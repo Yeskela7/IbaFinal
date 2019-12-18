@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Entity
 @Data
 @Table(name = "users")
-public class User {
+public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
@@ -23,6 +23,12 @@ public class User {
 
     @Column(name = "surname")
     private String surname;
+
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "picURl")
+    private String picURL;
 
 
 }
