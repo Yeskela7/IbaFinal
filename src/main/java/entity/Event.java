@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -34,4 +35,13 @@ public class Event {
 
     @Column(name = "time")
     private long time;
+
+    @ManyToMany
+    @JoinTable(name = "c_person_event",
+            joinColumns = {
+                    @JoinColumn(name = "e_id", referencedColumnName = "event_id")},
+            inverseJoinColumns = {
+                    @JoinColumn(name = "p_id", referencedColumnName = "person_id")}
+    )
+    private Set<Person>person;
 }
