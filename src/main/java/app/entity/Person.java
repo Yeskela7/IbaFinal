@@ -1,10 +1,10 @@
-package entity;
+package app.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @Column(name = "person_id")
     private long id;
 
 
@@ -30,5 +30,6 @@ public class Person {
     @Column(name = "picURl")
     private String picURL;
 
-
+    @ManyToMany(mappedBy="person")
+    private Set<Event> events;
 }

@@ -1,8 +1,7 @@
-package entity;
+package app.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -15,7 +14,7 @@ import java.util.Set;
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @Column(name = "event_id")
     private long id;
 
     @Column(name = "title")
@@ -44,4 +43,13 @@ public class Event {
                     @JoinColumn(name = "p_id", referencedColumnName = "person_id")}
     )
     private Set<Person>person;
+
+    @ManyToMany
+    @JoinTable(name = "c_tag_event",
+            joinColumns = {
+                    @JoinColumn(name = "e_id", referencedColumnName = "event_id")},
+            inverseJoinColumns = {
+                    @JoinColumn(name = "t_id", referencedColumnName = "tag_id")}
+    )
+    private Set<Tag>tags;
 }
