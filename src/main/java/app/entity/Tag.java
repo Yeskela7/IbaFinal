@@ -15,7 +15,7 @@ import java.util.Set;
 public class Tag {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "tag_id")
+    @Column(unique = true, name = "tag_id")
     private long id;
 
     @Column(name = "title")

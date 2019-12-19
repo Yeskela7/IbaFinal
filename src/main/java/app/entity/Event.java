@@ -1,4 +1,5 @@
 package app.entity;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,10 +15,10 @@ import java.util.Set;
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "event_id")
+    @Column(unique = true, name = "event_id")
     private long id;
 
-    @Column(name = "title")
+    @Column(unique = true, name = "title")
     private String title;
 
     @Column(name = "description")
@@ -40,7 +41,7 @@ public class Event {
             joinColumns = {
                     @JoinColumn(name = "e_id", referencedColumnName = "event_id")},
             inverseJoinColumns = {
-                    @JoinColumn(name = "p_id", referencedColumnName = "person_id")}
+                    @JoinColumn(name = "p_id", referencedColumnName = "user_id")}
     )
     private Set<Person>person;
 
