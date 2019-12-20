@@ -25,6 +25,10 @@ public class Person {
     @Column(name = "name")
     private String name;
 
+    @NotBlank(message="Creator is required")
+    @Column(name = "creatorId")
+    private long creatorId;
+
     @NotBlank(message="Surname is required")
     @Column(name = "surname")
     private String surname;

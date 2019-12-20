@@ -17,7 +17,8 @@ public interface EventRepository extends CrudRepository<Event, Long> {
     Iterable<Event> findAllByTags(String tag);
     Iterable<Event> findAllByTimeLessThan(Long time);
     Iterable<Event> findAllByTimeIsGreaterThan(Long time);
+    Iterable<Event> findAllByTimeLessThanOrderByTime(Long time);
     Iterable<Event> findAllByTagsIn(Collection<Tag> tags);
-    //TODO get bi personId
-    Iterable<Event> findAllByCreatorId(Long creatorId);
+    Iterable<Event> findAllByTimeBetween(Long t1, Long t2);
+    Iterable<Event> findAllByCreatorId(Long id);
 }
