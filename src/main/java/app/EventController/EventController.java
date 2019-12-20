@@ -30,6 +30,9 @@ public class EventController {
         return eventService.getAllByTag(tag);
     }
 
+
+
+
     @GetMapping("/{title}")
     public Optional<Event> handle_get_title(@PathVariable("title") String title) {
         return eventService.getByTitle(title);
