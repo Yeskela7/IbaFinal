@@ -54,4 +54,18 @@ public class EventServiceImpl implements EventService{
         return events;
     }
 
+    public Iterable<Event> getAllByTime(long t1, long t2){
+        Set<Event> events = new HashSet<>();
+        if (t1 == 0 && t2 == 0) throw new IllegalArgumentException("Both are null");
+        if (t2 == 0) {
+            eventRepository.findAllByTimeLessThan(t2).forEach(events::add);
+            return events;
+        }
+        if (t1 == 0) {
+            eventRepository.findAllByTimeIsGreaterThan(t1).forEach(events::add);
+            return events;
+        }
+        eventRepository.findAllByTimeBetween(t1,t2).forEach(events::add);
+        return events;
+    }
 }

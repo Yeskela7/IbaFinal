@@ -18,8 +18,4 @@ public class PersonServiceImpl implements PersonService {
     public Optional<Person> getByEmail(String email) {
         return personRepository.findByEmail(email);
     }
-
-    public Optional<Person> countPersonByEvents(long count) {
-        return personRepository.countPersonByEvents(count);
-    }
 }
