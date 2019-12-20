@@ -24,6 +24,12 @@ public class EventServiceImpl implements EventService{
         return eventRepository.findByTitle(title);
     }
 
+    public Iterable<Event> getByPlace(String place){
+        Set<Event> events = new HashSet<>();
+        eventRepository.findAllByPlace(place).forEach(events::add);
+        return events;
+    }
+
     public Iterable<Event> getAll(){
         Set<Event> events = new HashSet<>();
         eventRepository.findAll().forEach(events::add);
@@ -41,4 +47,11 @@ public class EventServiceImpl implements EventService{
         eventRepository.findAllByTagsIn(tags).forEach(events::add);
         return events;
     }
+
+    public Iterable<Event> getAllByCreator(long id){
+        Set<Event> events = new HashSet<>();
+        eventRepository.findAllByCreatorId(id).forEach(events::add);
+        return events;
+    }
+
 }
