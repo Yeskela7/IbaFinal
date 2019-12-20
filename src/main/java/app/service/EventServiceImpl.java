@@ -36,6 +36,4 @@ public class EventServiceImpl implements EventService{
         eventRepository.findAllByTags(tag).forEach(events::add);
         return events;
     }
-
-
 }
