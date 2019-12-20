@@ -33,7 +33,7 @@ public class Person {
     @Column(unique = true, name = "email")
     private String email;
 
-    @Pattern(regexp="^(([0-3][0-9])([/])(0[1-9]|1[0-2])([/])([1-9][0-9][0-9][0-9]))$",
+    @Pattern(regexp="^(([0-3][0-9])([/])(0[1-9]|1[0-2])([/])([1-2][0-9][0-9][0-9]))$",
             message="Must be formatted DD/MM/YYYY")
     @Column(name = "birth_date")
     private String birth_date;

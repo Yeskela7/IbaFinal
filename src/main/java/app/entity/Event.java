@@ -21,6 +21,9 @@ public class Event {
     @Column(unique = true, name = "title")
     private String title;
 
+    @Column(name = "creator_id")
+    private long creator_id;
+
     @Column(name = "description")
     private String description;
 
