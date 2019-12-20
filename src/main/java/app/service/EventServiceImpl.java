@@ -1,12 +1,11 @@
 package app.service;
 
 import app.entity.Event;
+import app.entity.Tag;
 import app.repository.EventRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class EventServiceImpl implements EventService{
@@ -25,15 +24,21 @@ public class EventServiceImpl implements EventService{
         return eventRepository.findByTitle(title);
     }
 
-    public List<Event> getAll(){
-        List<Event> events = new ArrayList<>();
+    public Iterable<Event> getAll(){
+        Set<Event> events = new HashSet<>();
         eventRepository.findAll().forEach(events::add);
         return events;
     }
 
     public Iterable<Event> getAllByTag(String tag){
-        List<Event> events = new ArrayList<>();
+        Set<Event> events = new HashSet<>();
         eventRepository.findAllByTags(tag).forEach(events::add);
+        return events;
+    }
+
+    public Iterable<Event> getAllByTags(Collection<Tag> tags){
+        Set<Event> events = new HashSet<>();
+        eventRepository.findAllByTagsIn(tags).forEach(events::add);
         return events;
     }
 }
