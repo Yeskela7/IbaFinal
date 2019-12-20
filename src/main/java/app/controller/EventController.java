@@ -1,4 +1,4 @@
-package app.EventController;
+package app.controller;
 
 import app.entity.Event;
 import app.service.EventService;
@@ -29,9 +29,6 @@ public class EventController {
     public Iterable<Event> handle_get_tag(@PathVariable("tag") String tag) {
         return eventService.getAllByTag(tag);
     }
-
-
-
 
     @GetMapping("/{title}")
     public Optional<Event> handle_get_title(@PathVariable("title") String title) {
