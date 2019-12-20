@@ -2,9 +2,13 @@ package app.controller;
 
 import app.entity.Event;
 import app.service.EventService;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
+
 @RestController
 @RequestMapping("/event")
 public class EventController {

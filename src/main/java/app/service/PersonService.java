@@ -1,10 +1,12 @@
 package app.service;
 
+import app.entity.Event;
 import app.entity.Person;
 
 import java.util.Optional;
 
 public interface PersonService {
-    public Optional<Person> getById(long id);
-    public Optional<Person> getByEmail(String email);
+    Optional<Person> getById(long id);
+    Optional<Person> getByEmail(String email);
+    Iterable<Person> getAllByEvent(Event event);
 }

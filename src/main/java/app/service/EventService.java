@@ -4,7 +4,6 @@ import app.entity.Event;
 import app.entity.Tag;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
 
 public interface EventService {
@@ -15,5 +14,6 @@ public interface EventService {
     Iterable<Event> getAllByTag(String tag);
     Iterable<Event> getByPlace(String place);
     Iterable<Event> getAllByTags(Collection<Tag> tags);
-    public Iterable<Event> getAllByCreator(long id);
+    Iterable<Event> getAllByCreator(long id);
+    Iterable<Event> getAllByTime(long t1, long t2);
 }
