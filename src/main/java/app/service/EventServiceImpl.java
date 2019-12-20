@@ -3,6 +3,7 @@ package app.service;
 import app.entity.Event;
 import app.entity.Tag;
 import app.repository.EventRepository;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.util.*;

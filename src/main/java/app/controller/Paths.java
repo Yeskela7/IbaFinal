@@ -1,4 +1,4 @@
-package app.EventController;
+package app.controller;
 
 public class Paths {
 
