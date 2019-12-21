@@ -1,5 +1,6 @@
 package app.security.jwt;
 
+import app.security.userdetails.MyUserDetailsService;
 import app.service.PersonServiceImpl;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,11 +17,11 @@ import java.util.Optional;
 
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-    private final PersonServiceImpl psi;
+    private final MyUserDetailsService uds;
     private final JwtTokenServiceImpl jwt;
 
-    public JwtAuthenticationFilter(PersonServiceImpl psi, JwtTokenServiceImpl jwt) {
-        this.psi = psi;
+    public JwtAuthenticationFilter(MyUserDetailsService uds, JwtTokenServiceImpl jwt) {
+        this.uds = uds;
         this.jwt = jwt;
     }
 
@@ -32,7 +33,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             extractTokenFromRequest(httpServletRequest)
                     .flatMap(jwt::tokenToClaim)
                     .map(jwt::extractUserIdFromClaims)
-                    .map(psi::getById)
+                    .map(uds::loadUserById)
                     .map(ud -> new UsernamePasswordAuthenticationToken(ud, null, ud.getAuthorities())) // UsernamePasswordAuthenticationToken
                     .ifPresent(auth -> {
                         auth.setDetails(new WebAuthenticationDetailsSource().buildDetails(httpServletRequest));
@@ -44,7 +45,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
     }
 
-}
 
     private Optional<String> extractTokenFromRequest(HttpServletRequest request) {
         final String auth_header = request.getHeader(Const.AUTH_HEADER);
