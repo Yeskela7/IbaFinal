@@ -1,11 +1,16 @@
 package app.service;
 
+import app.entity.Converter;
 import app.entity.Event;
+import app.entity.Person;
 import app.entity.Tag;
 import app.repository.EventRepository;
+import org.apache.el.stream.Stream;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 public class EventServiceImpl implements EventService{
@@ -69,7 +74,24 @@ public class EventServiceImpl implements EventService{
         return events;
     }
 
+public Iterable<Event> getEventNearBy(double longitude, double lat){
+    Set<Event> events = new HashSet<>();
+    eventRepository.findAll().forEach(events::add);
+        return events.stream()
+                .filter(event -> Converter
+                        .getDistance(event.getLatitude(),event.getLongitude(),lat,longitude) < 2)
+                .collect(Collectors.toSet());
+}
+
     public void saveEvent(Event event){
         eventRepository.save(event);
+    }
+
+    public void deleteEventById(long id){
+        eventRepository.deleteById(id);
+    }
+
+    public long getCapacity(Event event){
+        return eventRepository.findById(event.getId()).getNumberOfUsers();
     }
 }

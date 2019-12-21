@@ -19,4 +19,5 @@ public interface EventRepository extends CrudRepository<Event, Long> {
     Iterable<Event> findAllByCreatorId(Long id);
 
 
+
 }
