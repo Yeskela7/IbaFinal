@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
@@ -49,7 +50,7 @@ public class Event {
             inverseJoinColumns = {
                     @JoinColumn(name = "p_id", referencedColumnName = "user_id")}
     )
-    private Set<Person> person;
+    private Set<Person> person = new HashSet<>();
 
     public Event(String title, long creatorId, String description, long latitude, long longitude, String place, long time) {
         this.title = title;
@@ -68,7 +69,16 @@ public class Event {
             inverseJoinColumns = {
                     @JoinColumn(name = "t_id", referencedColumnName = "tag_id")}
     )
-    private Set<Tag>tags;
+    private Set<Tag>tags = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(name = "c_comment_event",
+            joinColumns = {
+                    @JoinColumn(name = "e_id", referencedColumnName = "event_id")},
+            inverseJoinColumns = {
+                    @JoinColumn(name = "c_id", referencedColumnName = "comment_id")}
+    )
+    private Set<Comment> comments = new HashSet<>();
 
     public long getId() {
         return id;
@@ -102,5 +112,15 @@ public class Event {
         return time;
     }
 
+    public Integer getPerson() {
+        return Optional.of(person.size()).orElse(null);
+    }
 
+    public Set<Tag> getTags() {
+        return tags;
+    }
+
+    public Set<Comment> getComments() {
+        return comments;
+    }
 }

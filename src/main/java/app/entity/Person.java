@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import java.util.HashSet;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -47,7 +48,7 @@ public class Person {
 //    private String picURL;
 
     @ManyToMany(mappedBy="person")
-    private Set<Event> events;
+    private Set<Event> events =  new HashSet<>();
 
     public Person(@NotBlank(message = "Name is required") String name,
                   @NotBlank(message = "Surname is required") String surname,

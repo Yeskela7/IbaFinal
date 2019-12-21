@@ -1,5 +1,6 @@
 package app.service;
 
+import app.entity.Comment;
 import app.entity.Converter;
 import app.entity.Event;
 import app.entity.Tag;
@@ -88,4 +89,7 @@ public Iterable<Event> getEventNearBy(double longitude, double lat){
         eventRepository.deleteById(id);
     }
 
+    public Iterable<Comment> getCommentsByEvent(Event event){
+        return event.getComments();
+    }
 }
