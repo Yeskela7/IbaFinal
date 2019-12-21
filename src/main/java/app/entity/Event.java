@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Optional;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -48,7 +49,7 @@ public class Event {
             inverseJoinColumns = {
                     @JoinColumn(name = "p_id", referencedColumnName = "user_id")}
     )
-    private Set<Person>person;
+    private Set<Person> person;
 
     public Event(String title, long creatorId, String description, long latitude, long longitude, String place, long time) {
         this.title = title;
@@ -101,14 +102,5 @@ public class Event {
         return time;
     }
 
-    public Set<Person> getPerson() {
-        return person;
-    }
-    public long getNumberOfUsers(){
-        return person.size();
-    }
 
-    public Set<Tag> getTags() {
-        return tags;
-    }
 }
