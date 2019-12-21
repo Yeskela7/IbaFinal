@@ -17,6 +17,8 @@ public class MvcConfig  implements WebMvcConfigurer {
                 {"/home"  , "home" },
                 {"/admin" , "admin"},
                 {"/user"  , "user" },
+                {"/login"  , "login" },
+                {"/register"  , "register" },
         };
 
         for (String[] item: mappings) {
