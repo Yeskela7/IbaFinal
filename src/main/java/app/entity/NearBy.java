@@ -1,16 +1,15 @@
 package app.entity;
 
 public class NearBy {
+    private static double earthRadius = 6371;
 
 
-    public static void distance(double user_lan, double user_lat, double event_lan, double event_lat){
-
-
-
-
-        return;
+    public static double distance(double user_lon, double user_lat, double event_lon, double event_lat) {
+        double distance = Math.acos(Math.sin(event_lat * Math.PI / 180.0) * Math.sin(user_lat * Math.PI / 180.0) +
+                Math.cos(event_lat * Math.PI / 180.0) * Math.cos(user_lat * Math.PI / 180.0) *
+                        Math.cos((user_lon - event_lon) * Math.PI / 180.0)) * earthRadius;
+        return distance;
     }
-
 
 
 }
