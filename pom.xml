@@ -27,6 +27,9 @@
             <layout>default</layout>
         </repository>
     </distributionManagement>
+
+
+
     <build>
         <plugins>
             <!-- Java 8 source and target settings -->
@@ -68,7 +71,8 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>EventApp</mainClass>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>app.EventApp</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
@@ -84,7 +88,7 @@
                 <executions>
                     <execution>
                         <goals>
-                            <goal>build-info</goal>
+                            <goal>repackage</goal>
                         </goals>
                         <configuration>
                             <additionalProperties>
