@@ -1,4 +1,4 @@
-package app.security;
+package app.security.jwt;
 
 import io.jsonwebtoken.*;
 import lombok.extern.log4j.Log4j2;
@@ -12,7 +12,7 @@ import java.util.Optional;
 @Log4j2
 @Service
 @PropertySource("classpath:jwt.properties")
-public class JwtServiceImpl {
+public class JwtTokenServiceImpl {
     @Value("${jwt.secret}")
     private String jwtSecret;
 
