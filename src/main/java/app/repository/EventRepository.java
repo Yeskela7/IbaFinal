@@ -4,7 +4,6 @@ import app.entity.Event;
 import app.entity.Tag;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-
 import java.util.Collection;
 import java.util.Optional;
 
@@ -18,4 +17,5 @@ public interface EventRepository extends CrudRepository<Event, Long> {
     Iterable<Event> findAllByTagsIn(Collection<Tag> tags);
     Iterable<Event> findAllByTimeBetween(Long t1, Long t2);
     Iterable<Event> findAllByCreatorId(Long id);
+
 }

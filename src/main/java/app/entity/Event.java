@@ -26,7 +26,7 @@ public class Event {
 
     @Column(name = "description")
     private String description;
-
+0
     @Column(name = "latitude")
     private long latitude;
 
