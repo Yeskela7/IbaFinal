@@ -30,4 +30,8 @@ public class PersonServiceImpl implements PersonService {
         personRepository.findAllByEvents(event).forEach(personSet::add);
         return personSet;
     }
+
+    public void savePerson(Person person){
+        personRepository.save(person);
+    }
 }

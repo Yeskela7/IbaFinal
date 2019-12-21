@@ -33,7 +33,7 @@ public class Person {
     private String email;
 
     @NotBlank(message="Password is required")
-    @Column( name = "email")
+    @Column( name = "password")
     private String password;
 
 //    @Pattern(regexp="^(([0-3][0-9])([/])(0[1-9]|1[0-2])([/])([1-2][0-9][0-9][0-9]))$",

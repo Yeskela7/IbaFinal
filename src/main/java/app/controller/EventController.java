@@ -2,10 +2,8 @@ package app.controller;
 
 import app.entity.Event;
 import app.service.EventService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import app.service.EventServiceImpl;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -13,9 +11,9 @@ import java.util.Optional;
 @RequestMapping("/event")
 public class EventController {
 
-    private final EventService eventService;
+    private final EventServiceImpl eventService;
 
-    public EventController(EventService service) {
+    public EventController(EventServiceImpl service) {
         this.eventService = service;
     }
 
@@ -37,5 +35,10 @@ public class EventController {
     @GetMapping("/{title}")
     public Optional<Event> handle_get_title(@PathVariable("title") String title) {
         return eventService.getByTitle(title);
+    }
+
+    @PostMapping
+    public void postEvent(@RequestBody Event event){
+        eventService.saveEvent(event);
     }
 }

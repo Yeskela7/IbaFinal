@@ -68,4 +68,8 @@ public class EventServiceImpl implements EventService{
         eventRepository.findAllByTimeBetween(t1,t2).forEach(events::add);
         return events;
     }
+
+    public void saveEvent(Event event){
+        eventRepository.save(event);
+    }
 }

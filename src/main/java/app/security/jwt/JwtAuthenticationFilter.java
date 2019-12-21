@@ -1,7 +1,6 @@
 package app.security.jwt;
 
 import app.security.userdetails.MyUserDetailsService;
-import app.service.PersonServiceImpl;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
@@ -44,7 +43,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             logger.error("Could not set user authentication in security context", ex);
         }
     }
-
 
     private Optional<String> extractTokenFromRequest(HttpServletRequest request) {
         final String auth_header = request.getHeader(Const.AUTH_HEADER);

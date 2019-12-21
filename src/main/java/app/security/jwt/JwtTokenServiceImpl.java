@@ -40,7 +40,11 @@ public class JwtTokenServiceImpl {
     public Optional<Jws<Claims>> tokenToClaim(String token){
         try {
             return Optional.of(Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token));
-        }catch (SignatureException | MalformedJwtException | IllegalArgumentException | UnsupportedJwtException | ExpiredJwtException ex) {
+        }catch (SignatureException |
+                MalformedJwtException |
+                IllegalArgumentException |
+                UnsupportedJwtException |
+                ExpiredJwtException ex) {
          //TODO correct this
             System.out.println("ex");
         }
