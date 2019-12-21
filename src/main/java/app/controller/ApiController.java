@@ -13,4 +13,19 @@ public class ApiController {
     public ApiMessageResp handleGuest(){
         return new ApiMessageResp("OK:any unregistered");
     }
+
+    @GetMapping("/home")
+    public ApiMessageResp handleHome(){
+        return new ApiMessageResp("OK:any authenticated");
+    }
+
+    @GetMapping("/user")
+    public ApiMessageResp handleUser(){
+        return new ApiMessageResp("OK:any authorized with USER role");
+    }
+
+    @GetMapping("/event")
+    public ApiMessageResp handleEvent(){
+        return new ApiMessageResp("OK:any authorized with USER role");
+    }
 }

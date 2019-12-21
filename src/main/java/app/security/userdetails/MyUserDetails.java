@@ -25,6 +25,10 @@ public class MyUserDetails implements UserDetails {
         return Collections.singletonList((GrantedAuthority) () -> "ROLE_USER");
     }
 
+    public Long getId() {
+        return id;
+    }
+
     @Override
     public String getPassword() {
         return password;

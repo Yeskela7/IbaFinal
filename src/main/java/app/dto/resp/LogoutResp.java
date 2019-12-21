@@ -7,4 +7,12 @@ import lombok.Getter;
 @Getter
 public class LogoutResp {
     private String message;
+
+    public LogoutResp(String message) {
+        this.message = message;
+    }
+
+    public String getMessage() {
+        return message;
+    }
 }
