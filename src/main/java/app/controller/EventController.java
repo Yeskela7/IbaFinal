@@ -20,17 +20,17 @@ public class EventController {
         return eventService.getAll();
     }
 
-    @GetMapping(Paths.get_by_id+"/{id}")
+    @GetMapping(Paths.get_by_id+"{id}")
     public Optional<Event> handle_get(@PathVariable("id") long id) {
         return eventService.getById(id);
     }
 
-    @GetMapping(Paths.get_tagged_events+"/{tag}")
+    @GetMapping(Paths.get_tagged_events+"{tag}")
     public Iterable<Event> handle_get_tag(@PathVariable("tag") String tag) {
         return eventService.getAllByTag(tag);
     }
 
-    @GetMapping(Paths.get_by_title+"/{title}")
+    @GetMapping(Paths.get_by_title+"{title}")
     public Optional<Event> handle_get_title(@PathVariable("title") String title) {
         return eventService.getByTitle(title);
     }

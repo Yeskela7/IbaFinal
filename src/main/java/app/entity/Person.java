@@ -2,6 +2,7 @@ package app.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -13,6 +14,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Data
+@Getter
 @Table(name = "users")
 public class Person {
     @Id
@@ -57,5 +59,29 @@ public class Person {
         this.email = email;
         this.password = password;
         this.birth_date = birth_date;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getBirth_date() {
+        return birth_date;
     }
 }
