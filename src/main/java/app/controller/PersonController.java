@@ -2,35 +2,38 @@ package app.controller;
 
 import app.entity.Event;
 import app.entity.Person;
-import app.service.EventService;
-import app.service.PersonService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import app.service.PersonServiceImpl;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/profile")
 public class PersonController {
 
-    private final PersonService person_service;
+    private final PersonServiceImpl personService;
 
-    public PersonController(PersonService service) {
-        this.person_service = service;
+    public PersonController(PersonServiceImpl service) {
+        this.personService = service;
     }
 
-    @GetMapping(Paths.get_by_person_id+"{id}")
-    public Optional<Person> handle_get(@PathVariable("id") long id) {
-        return person_service.getById(id);
+    @GetMapping("/{id}")
+    public Optional<Person> handle_get(long id) {
+        return personService.getById(id);
     }
 
-    @GetMapping(Paths.get_person_by_email+"{email}")
-    public Optional<Person> handle_get_tag(@PathVariable("email") String email) {
-        return person_service.getByEmail(email);
+    @GetMapping("/{email}")
+    public Optional<Person> handle_get_email(@PathVariable("email") String email) {
+        return personService.getByEmail(email);
     }
-    @GetMapping(Paths.get_events_person+"{event}")
-    public Iterable<Person> handle_get_title(@PathVariable("event") Event event_name) {
-        return person_service.getAllByEvent(event_name);
+
+    @GetMapping("/{event}")
+    public Iterable<Person> handle_get_event(@PathVariable("event") Event event) {
+        return personService.getAllByEvent(event);
+    }
+
+    @PostMapping
+    public void postPerson(@RequestBody Person person) {
+        personService.savePerson(person);
     }
 }
