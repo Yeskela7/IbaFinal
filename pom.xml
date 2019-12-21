@@ -42,11 +42,11 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>put.your.main.class.here</mainClass>
+                            <mainClass>EventApp</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
-                        <descriptorRef>jar-with-deps</descriptorRef>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
                 </configuration>
             </plugin>
