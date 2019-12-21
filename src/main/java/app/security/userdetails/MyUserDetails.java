@@ -5,6 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.stream.Collectors;
 
 public class MyUserDetails implements UserDetails {
@@ -12,21 +13,16 @@ public class MyUserDetails implements UserDetails {
     private final Long id;
     private final String username;
     private final String password;
-    private final String[] roles;
 
-    public MyUserDetails(Long id, String username, String password, String[] roles){
+    public MyUserDetails(Long id, String username, String password){
         this.id = id;
         this.username = username;
         this.password = password;
-        this.roles = roles;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Arrays.stream(roles)
-                .map(s -> "ROLE_" + s)
-                .map(s -> (GrantedAuthority) () -> s)
-                .collect(Collectors.toList());
+        return Collections.singletonList((GrantedAuthority) () -> "ROLE_USER");
     }
 
     @Override
