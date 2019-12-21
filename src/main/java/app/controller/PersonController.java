@@ -2,7 +2,7 @@ package app.controller;
 
 import app.entity.Event;
 import app.entity.Person;
-import app.service.PersonServiceImpl;
+import app.service.PersonService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -11,9 +11,9 @@ import java.util.Optional;
 @RequestMapping("/profile")
 public class PersonController {
 
-    private final PersonServiceImpl personService;
+    private final PersonService personService;
 
-    public PersonController(PersonServiceImpl service) {
+    public PersonController(PersonService service) {
         this.personService = service;
     }
 

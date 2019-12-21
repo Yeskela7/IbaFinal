@@ -6,7 +6,7 @@ import app.dto.req.RegisterReq;
 import app.dto.resp.LoginResp;
 import app.dto.resp.LogoutResp;
 import app.dto.resp.RegisterResp;
-import app.service.AuthServiceImpl;
+import app.service.AuthService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class AuthController {
 
-    private final AuthServiceImpl authService;
+    private final AuthService authService;
 
-    public AuthController(AuthServiceImpl authService) {
+    public AuthController(AuthService authService) {
         this.authService = authService;
     }
 

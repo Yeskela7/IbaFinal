@@ -1,7 +1,7 @@
 package app.controller;
 
 import app.entity.Event;
-import app.service.EventServiceImpl;
+import app.service.EventService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -9,9 +9,9 @@ import java.util.Optional;
 @RestController
 public class EventController {
 
-    private final EventServiceImpl eventService;
+    private final EventService eventService;
 
-    public EventController(EventServiceImpl service) {
+    public EventController(EventService service) {
         this.eventService = service;
     }
 

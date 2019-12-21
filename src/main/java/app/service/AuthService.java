@@ -15,17 +15,17 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class AuthServiceImpl {
+public class AuthService {
 
     private final AuthenticationManager am;
     private final JwtTokenServiceImpl tp;
     private final PersonRepository repo;
     private final PasswordEncoder enc;
 
-    public AuthServiceImpl(AuthenticationManager am,
-                           JwtTokenServiceImpl tp,
-                           PersonRepository repo,
-                           PasswordEncoder enc) {
+    public AuthService(AuthenticationManager am,
+                       JwtTokenServiceImpl tp,
+                       PersonRepository repo,
+                       PasswordEncoder enc) {
         this.am = am;
         this.tp = tp;
         this.repo = repo;

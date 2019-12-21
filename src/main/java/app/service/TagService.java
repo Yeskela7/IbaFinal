@@ -9,10 +9,10 @@ import java.util.Set;
 
 
 @Service
-public class TagServiceImpl {
+public class TagService {
     private final TagRepository repository;
 
-    public TagServiceImpl(TagRepository repository) {
+    public TagService(TagRepository repository) {
         this.repository = repository;
     }
 
