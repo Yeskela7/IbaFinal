@@ -1,7 +1,6 @@
 package app.controller;
 
 import app.entity.Event;
-import app.service.EventService;
 import app.service.EventServiceImpl;
 import org.springframework.web.bind.annotation.*;
 

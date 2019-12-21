@@ -14,6 +14,7 @@ public class MvcConfig {
                 {"/home"  , "home" },
                 {"/admin" , "admin"},
                 {"/user"  , "user" },
+                {"/error"  , "error" },
         };
 
         for (String[] item: mappings) {
