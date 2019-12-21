@@ -1,10 +1,13 @@
 package app.mvc;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-public class MvcConfig {
+@EnableWebMvc
+public class MvcConfig  implements WebMvcConfigurer {
 
     public void addViewControllers(ViewControllerRegistry registry) {
         String[][] mappings = {
@@ -14,7 +17,6 @@ public class MvcConfig {
                 {"/home"  , "home" },
                 {"/admin" , "admin"},
                 {"/user"  , "user" },
-                {"/error"  , "error" },
         };
 
         for (String[] item: mappings) {
