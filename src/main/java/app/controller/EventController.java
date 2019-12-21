@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/event")
 public class EventController {
 
     private final EventService eventService;
@@ -19,22 +18,22 @@ public class EventController {
         this.eventService = service;
     }
 
-    @GetMapping
+    @GetMapping(Paths.get_all_events)
     public Iterable<Event> handle_get_all() {
         return eventService.getAll();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(Paths.get_by_id+"/{id}")
     public Optional<Event> handle_get(@PathVariable("id") long id) {
         return eventService.getById(id);
     }
 
-    @GetMapping("/{tag}")
+    @GetMapping(Paths.get_tagged_events+"/{tag}")
     public Iterable<Event> handle_get_tag(@PathVariable("tag") String tag) {
         return eventService.getAllByTag(tag);
     }
 
-    @GetMapping("/{title}")
+    @GetMapping(Paths.get_by_title+"/{title}")
     public Optional<Event> handle_get_title(@PathVariable("title") String title) {
         return eventService.getByTitle(title);
     }

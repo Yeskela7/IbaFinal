@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/person")
 public class personController {
 
     private final PersonService person_service;
@@ -21,16 +20,16 @@ public class personController {
         this.person_service = service;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(Paths.get_by_person_id+"/{id}")
     public Optional<Person> handle_get(@PathVariable("id") long id) {
         return person_service.getById(id);
     }
 
-    @GetMapping("/{email}")
+    @GetMapping(Paths.get_person_by_email+"/{email}")
     public Optional<Person> handle_get_tag(@PathVariable("email") String email) {
         return person_service.getByEmail(email);
     }
-    @GetMapping("/{event}")
+    @GetMapping(Paths.get_events_person+"/{event}")
     public Iterable<Person> handle_get_title(@PathVariable("event") Event event_name) {
         return person_service.getAllByEvent(event_name);
     }
