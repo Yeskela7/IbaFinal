@@ -18,10 +18,18 @@
         <webjars-jquery-ui.version>1.12.1</webjars-jquery-ui.version>
         <webjars-jquery.version>3.3.1-1</webjars-jquery.version>
     </properties>
-
+    <distributionManagement>
+        <repository>
+            <uniqueVersion>false</uniqueVersion>
+            <id>corp1</id>
+            <name>Corporate Repository</name>
+            <url>file:///Users/Dom/.m2</url>
+            <layout>default</layout>
+        </repository>
+    </distributionManagement>
     <build>
         <plugins>
-            <!-- Java 8 source and target settings-->
+            <!-- Java 8 source and target settings -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -31,7 +39,25 @@
                     <target>8</target>
                 </configuration>
             </plugin>
-            <!-- junit 5.+ version settings -->
+            <!-- Copy dependencies to `${project.build.directory}/deps` -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>
+                                ${project.build.directory}
+                            </outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.2</version>
