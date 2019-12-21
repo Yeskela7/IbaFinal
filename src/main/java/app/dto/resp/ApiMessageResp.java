@@ -11,7 +11,4 @@ import lombok.NoArgsConstructor;
 public class ApiMessageResp {
     private String content;
 
-    public ApiMessageResp(String content) {
-        this.content = content;
-    }
 }

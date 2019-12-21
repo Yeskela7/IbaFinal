@@ -9,9 +9,6 @@ public class RegisterResp {
 
     private String message;
 
-    public RegisterResp(String message) {
-        this.message = message;
-    }
 
     public static RegisterResp Ok() {
         return new RegisterResp("Ok");
