@@ -11,8 +11,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class EventApp {
     public static void main(String[] args) {
-        Event e = new Event("event",2,"df",2,2,"23",331);
-        System.out.println(e.getPerson());
         SpringApplication.run(EventApp.class);
     }
 }
