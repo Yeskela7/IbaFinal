@@ -46,7 +46,7 @@ public class EventController {
         return eventService.getById(id____);
     }
 
-//    @GetMapping(Paths.get_tagged_events+"{tag}")
+//    @GetMapping(Paths.getEventPath+"{tag}")
 //    public Iterable<Event> handle_get_tag(@PathVariable("tag") String tag) {
 //        return eventService.getAllByTag(tag);
 //    }
@@ -73,6 +73,11 @@ public class EventController {
                 req.getTime(),
                 req.getDate()));                ;
         return "Added";
+    }
+
+    @PostMapping(Paths.getNearBy)
+    public Iterable<Event> nearBy(@RequestParam(name = "latitude") double lat, @RequestParam(name = "longitude") double lon){
+        return eventService.getEventNearBy(lat, lon);
     }
 
     @PostMapping(Paths.getEventPath +"{id}")

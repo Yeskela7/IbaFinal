@@ -75,12 +75,12 @@ public class EventService {
         return events;
     }
 
-    public Iterable<Event> getEventNearBy(double longitude, double lat) {
+    public Iterable<Event> getEventNearBy(double lat, double lon) {
         Set<Event> events = new HashSet<>();
         eventRepository.findAll().forEach(events::add);
         return events.stream()
                 .filter(event -> Converter
-                        .getDistance(event.getLocation().getLatitude(), event.getLocation().getLongitude(), lat, longitude) < 2)
+                        .getDistance(event.getLocation().getLatitude(), event.getLocation().getLongitude(), lat, lon) < 2)
                 .collect(Collectors.toSet());
     }
 
