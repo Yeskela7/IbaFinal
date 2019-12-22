@@ -41,6 +41,8 @@ public class MyAppSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/event/**", "/api/event/**").authenticated()
                 .antMatchers("/me/**", "/api/user/**").hasRole("USER")
                 .anyRequest().authenticated();
+
+        http.cors();
         http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
     }
