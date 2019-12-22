@@ -26,6 +26,6 @@ public class Tag {
 
 
     @JsonBackReference
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy="tags")
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy="category")
     private Collection<Event> events =  new HashSet<>();
 }

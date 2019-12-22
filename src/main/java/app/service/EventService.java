@@ -44,13 +44,13 @@ public class EventService {
 
     public Iterable<Event> getAllByTag(String tag) {
         Set<Event> events = new HashSet<>();
-        eventRepository.findAllByTags(tag).forEach(events::add);
+        eventRepository.findAllByCategory(tag).forEach(events::add);
         return events;
     }
 
     public Iterable<Event> getAllByTags(Collection<Tag> tags) {
         Set<Event> events = new HashSet<>();
-        eventRepository.findAllByTagsIn(tags).forEach(events::add);
+        eventRepository.findAllByCategoryIn(tags).forEach(events::add);
         return events;
     }
 

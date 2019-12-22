@@ -12,10 +12,10 @@ import java.util.Optional;
 public interface EventRepository extends CrudRepository<Event, Long> {
     Optional<Event> findByTitle(String title);
     Iterable<Event> findAllByPlace(String place);
-    Iterable<Event> findAllByTags(String tag);
+    Iterable<Event> findAllByCategory(String category);
     Iterable<Event> findAllByTimeLessThan(Long time);
     Iterable<Event> findAllByTimeIsGreaterThan(Long time);
-    Iterable<Event> findAllByTagsIn(Collection<Tag> tags);
+    Iterable<Event> findAllByCategoryIn(Collection<Tag> category);
     Iterable<Event> findAllByTimeBetween(Long t1, Long t2);
     Iterable<Event> findAllByCreatorId(Long id);
 }

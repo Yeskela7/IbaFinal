@@ -99,10 +99,10 @@ public class Event {
             inverseJoinColumns = {
                     @JoinColumn(name = "t_id", referencedColumnName = "tag_id")}
     )
-    private Collection<Tag>tags = new HashSet<>();
+    private Collection<Tag> category = new HashSet<>();
 
     public void addTagsToEvent(Collection<? extends Tag> t){
-        tags.addAll(t);
+        category.addAll(t);
     }
 
     @JsonManagedReference
@@ -119,7 +119,7 @@ public class Event {
         comments.addAll(c);
     }
 
-    public Event(String title, long creatorId, String description, Geo location, String place, long time, Collection<Person> person, Collection<Tag> tags, Collection<Comment> comments) {
+    public Event(String title, long creatorId, String description, Geo location, String place, long time, Collection<Person> person, Collection<Tag> category, Collection<Comment> comments) {
         this.title = title;
         this.creatorId = creatorId;
         this.description = description;
@@ -127,7 +127,7 @@ public class Event {
         this.place = place;
         this.time = time;
         this.guests = StreamSupport.stream(person.spliterator(), false).collect(Collectors.toSet());
-        this.tags = StreamSupport.stream(tags.spliterator(), false).collect(Collectors.toSet());
+        this.category = StreamSupport.stream(category.spliterator(), false).collect(Collectors.toSet());
         this.comments = StreamSupport.stream(comments.spliterator(), false).collect(Collectors.toSet());
     }
 
