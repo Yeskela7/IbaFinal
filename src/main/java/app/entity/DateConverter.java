@@ -24,8 +24,4 @@ public class DateConverter {
         return dated.getTime();
     }
 
-//    public static long hour(int hour) {
-//        return 1000 * 60 * 60 * hour;
-//    }
-
 }

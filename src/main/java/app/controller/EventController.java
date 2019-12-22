@@ -2,6 +2,7 @@ package app.controller;
 
 import app.dto.req.EventReq;
 import app.dto.req.TokenReq;
+import app.entity.DateConverter;
 import app.entity.Event;
 import app.entity.Person;
 import app.security.jwt.JwtTokenServiceImpl;
@@ -11,6 +12,7 @@ import app.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.Optional;
 
 @CrossOrigin
@@ -35,9 +37,6 @@ public class EventController {
     //TODO getAll++
     @GetMapping(Paths.getEventPath)
     public Iterable<Event> handle_get_all() {
-        System.out.println("------------------------");
-        System.out.println(eventService.getAll());
-        System.out.println("------------------------");
         return eventService.getAll();
     }
 
@@ -65,13 +64,14 @@ public class EventController {
 //    String title, long creatorId, String description, Geo geo, String place, long time
     //TODO SaveOne++
     @PostMapping(Paths.getEventPath)
-    public String postEvent(@RequestBody EventReq req) {
+    public String postEvent(@RequestBody EventReq req) throws ParseException {
         eventService.saveEvent(new Event(req.getTitle(),
                 req.getCreatorId(),
                 req.getDescription(),
                 req.getLocation(),
                 req.getPlace(),
-                req.getTime()));
+                req.getTime(),
+                req.getDate()));                ;
         return "Added";
     }
 
@@ -84,6 +84,6 @@ public class EventController {
         eventService.savePersonIntoEvent(id,person.get());
         Event event = eventService.getById(id).get();
         eventService.saveEvent(event);
-        return "Person joined";
+        return "on the way";
     }
 }

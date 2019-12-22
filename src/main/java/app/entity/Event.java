@@ -47,7 +47,10 @@ public class Event {
     private String place;
 
     @Column(name = "time")
-    private long time;
+    private String time;
+
+    @Column(name = "date")
+    private String date;
 
     @JsonManagedReference
     @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY, targetEntity = Person.class)
@@ -62,7 +65,6 @@ public class Event {
     public Collection<Person> getGuests() {
         return guests;
     }
-
 
     //    @JsonManagedReference
 //    @ManyToMany(cascade = CascadeType.ALL, targetEntity = Person.class)
@@ -82,16 +84,17 @@ public class Event {
         guests.remove(p);
     }
 
-    public Event(String title, long creatorId, String description, Geo location, String place, long time) {
+    public Event(String title, long creatorId, String description, Geo location, String place, String time, String date) {
         this.title = title;
         this.creatorId = creatorId;
         this.description = description;
         this.location = location;
         this.place = place;
         this.time = time;
+        this.date = date;
     }
 
-            @JsonManagedReference
+    @JsonManagedReference
     @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY, targetEntity = Tag.class)
             @JoinTable(name = "c_tag_event",
             joinColumns = {
@@ -119,13 +122,14 @@ public class Event {
         comments.addAll(c);
     }
 
-    public Event(String title, long creatorId, String description, Geo location, String place, long time, Collection<Person> person, Collection<Tag> category, Collection<Comment> comments) {
+    public Event(String title, long creatorId, String description, Geo location, String place, String time, String date, Collection<Person> person, Collection<Tag> category, Collection<Comment> comments) {
         this.title = title;
         this.creatorId = creatorId;
         this.description = description;
         this.location = location;
         this.place = place;
         this.time = time;
+        this.date = date;
         this.guests = StreamSupport.stream(person.spliterator(), false).collect(Collectors.toSet());
         this.category = StreamSupport.stream(category.spliterator(), false).collect(Collectors.toSet());
         this.comments = StreamSupport.stream(comments.spliterator(), false).collect(Collectors.toSet());
@@ -155,8 +159,12 @@ public class Event {
         return place;
     }
 
-    public long getTime() {
+    public String getTime() {
         return time;
+    }
+
+    public String getDate() {
+        return date;
     }
 
     public Integer getPersonCap() {

@@ -12,5 +12,6 @@ public class EventResp {
     private String description;
     private String place;
     private Geo location;
-    private long time;
+    private String date;
+    private String time;
 }

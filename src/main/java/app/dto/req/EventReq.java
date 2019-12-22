@@ -13,16 +13,8 @@ public class EventReq {
     private String description;
     private String place;
     private Geo location;
-    private long time;
-
-    public EventReq(String title, long creatorId, String description, String place, Geo location, long time) {
-        this.title = title;
-        this.creatorId = creatorId;
-        this.description = description;
-        this.place = place;
-        this.location = location;
-        this.time = time;
-    }
+    private String date;
+    private String time;
 
     public String getTitle() {
         return title;
@@ -36,15 +28,29 @@ public class EventReq {
         return description;
     }
 
-    public Geo getLocation() {
-        return location;
-    }
-
     public String getPlace() {
         return place;
     }
 
-    public long getTime() {
+    public Geo getLocation() {
+        return location;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public String getTime() {
         return time;
+    }
+
+    public EventReq(String title, long creatorId, String description, String place, Geo location, String date, String time) {
+        this.title = title;
+        this.creatorId = creatorId;
+        this.description = description;
+        this.place = place;
+        this.location = location;
+        this.date = date;
+        this.time = time;
     }
 }
