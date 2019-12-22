@@ -32,7 +32,6 @@ public class Event {
     private String description;
 
     @Embedded
-    @Column(name = "geo")
     private Geo geo;
 
 //    @Column(name = "latitude")

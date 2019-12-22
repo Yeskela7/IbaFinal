@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Data
@@ -12,7 +13,12 @@ import javax.persistence.Embeddable;
 @AllArgsConstructor
 @Embeddable
 public class Geo {
+
+
+    @Column(name = "latitude")
     private long latitude;
+
+    @Column(name = "longitude")
     private long longitude;
 
     public long getLatitude() {
@@ -23,4 +29,6 @@ public class Geo {
         return longitude;
     }
 
+    public Geo() {
+    }
 }
