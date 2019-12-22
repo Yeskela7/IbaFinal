@@ -28,7 +28,8 @@ public class PersonController {
 
     @GetMapping(Paths.getPersonPath)
     public Optional<Person> handle_get(@RequestHeader (name="Authorization") TokenReq req) {
-        Optional<Long> userId = Optional.of(req.getToken())
+
+        Optional<Long> userId = Optional.of(req.getToken().split(" ")[1])
                 .flatMap(jwt::tokenToClaim)
                 .map(jwt::extractUserIdFromClaims);
         Optional<Person> person = personService.getById(userId.get());

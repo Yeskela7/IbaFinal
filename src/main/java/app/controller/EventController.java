@@ -76,8 +76,8 @@ public class EventController {
     }
 
     @PostMapping(Paths.getEventPath +"{id}")
-    public String addPerson(@PathVariable("id") long id, @RequestBody TokenReq req){
-        Optional<Long> userId = Optional.of(req.getToken())
+    public String addPerson(@PathVariable("id") long id, @RequestHeader (name="Authorization") TokenReq req){
+        Optional<Long> userId = Optional.of(req.getToken().split(" ")[1])
                 .flatMap(jwt::tokenToClaim)
                 .map(jwt::extractUserIdFromClaims);
         Optional<Person> person = personService.getById(userId.get());
