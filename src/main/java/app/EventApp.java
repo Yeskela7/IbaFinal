@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * http://localhost:9166/h2-console
+ * http://localhost:9002/h2-console
  *
  */
 
