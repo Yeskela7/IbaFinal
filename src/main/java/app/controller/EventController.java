@@ -1,29 +1,41 @@
 package app.controller;
 
 import app.dto.req.EventReq;
+import app.dto.req.TokenReq;
 import app.entity.Event;
-import app.entity.Geo;
+import app.entity.Person;
+import app.security.jwt.JwtTokenServiceImpl;
+import app.security.userdetails.MyUserDetailsService;
 import app.service.EventService;
+import app.service.PersonService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class EventController {
 
     private final EventService eventService;
+    private final PersonService personService;
+    private final MyUserDetailsService uds;
+    private final JwtTokenServiceImpl jwt;
 
-    public EventController(EventService service) {
+    public EventController(EventService service, PersonService personService, MyUserDetailsService uds, JwtTokenServiceImpl jwt) {
         this.eventService = service;
+        this.personService = personService;
+        this.uds = uds;
+        this.jwt = jwt;
     }
 
-    @GetMapping(Paths.get_all_events)
+    //TODO getAll++
+    @GetMapping(Paths.getEventPath)
     public Iterable<Event> handle_get_all() {
         return eventService.getAll();
     }
 
-    @GetMapping("/api/event/{id}")
+    //TODO getById++
+    @GetMapping(Paths.getEventPath + "{id}")
     public Optional<Event> handle_get(@PathVariable("id") long id____) {
         return eventService.getById(id____);
     }
@@ -38,14 +50,15 @@ public class EventController {
 //        return eventService.getByTitle(title);
 //    }
 
-//    @PostMapping
+    //    @PostMapping
 //    public String postEvent(@RequestBody Event event){
 //        eventService.saveEvent(event);
 //        return "Added";
 //    }
 //    String title, long creatorId, String description, Geo geo, String place, long time
-    @PostMapping(Paths.getPath)
-    public String postEvent(@RequestBody EventReq req){
+    //TODO SaveOne++
+    @PostMapping(Paths.getEventPath)
+    public String postEvent(@RequestBody EventReq req) {
         eventService.saveEvent(new Event(req.getTitle(),
                 req.getCreatorId(),
                 req.getDescription(),
@@ -53,5 +66,15 @@ public class EventController {
                 req.getPlace(),
                 req.getTime()));
         return "Added";
+    }
+
+    @PostMapping(Paths.getEventPath +"{id}")
+    public String addPerson(@PathVariable("id") long id, @RequestBody TokenReq req){
+        Optional<Long> userId = Optional.of(req.getToken())
+                .flatMap(jwt::tokenToClaim)
+                .map(jwt::extractUserIdFromClaims);
+        Optional<Person> person = personService.getById(userId.get());
+        eventService.savePersonIntoEvent(id,person.get());
+        return "Person joined";
     }
 }

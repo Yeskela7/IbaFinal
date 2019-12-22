@@ -1,9 +1,6 @@
 package app.service;
 
-import app.entity.Comment;
-import app.entity.Converter;
-import app.entity.Event;
-import app.entity.Tag;
+import app.entity.*;
 import app.repository.EventRepository;
 import org.springframework.stereotype.Service;
 
@@ -86,6 +83,10 @@ public class EventService {
 
     public void saveEvent(Event event) {
         eventRepository.save(event);
+    }
+
+    public void savePersonIntoEvent(long eventId,Person person){
+        eventRepository.findById(eventId).get().getPerson().add(person);
     }
 
     public void deleteEventById(long id) {

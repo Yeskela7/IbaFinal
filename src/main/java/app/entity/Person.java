@@ -48,7 +48,7 @@ public class Person {
 //    private String picURL;
 
     @ManyToMany(mappedBy="person")
-    private Set<Event> events =  new HashSet<>();
+    private Set<Event> events;
 
     public Person(@NotBlank(message = "Email is required") String email,
                   @NotBlank(message = "Password is required") String password,

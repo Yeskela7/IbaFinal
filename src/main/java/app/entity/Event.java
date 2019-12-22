@@ -53,7 +53,7 @@ public class Event {
             inverseJoinColumns = {
                     @JoinColumn(name = "p_id", referencedColumnName = "user_id")}
     )
-    private Set<Person> person = new HashSet<>();
+    private Set<Person> person;
 
     public Event(String title, long creatorId, String description, Geo geo, String place, long time) {
         this.title = title;
@@ -71,7 +71,7 @@ public class Event {
             inverseJoinColumns = {
                     @JoinColumn(name = "t_id", referencedColumnName = "tag_id")}
     )
-    private Set<Tag>tags = new HashSet<>();
+    private Set<Tag>tags;
 
     @ManyToMany
     @JoinTable(name = "c_comment_event",
@@ -80,7 +80,7 @@ public class Event {
             inverseJoinColumns = {
                     @JoinColumn(name = "c_id", referencedColumnName = "comment_id")}
     )
-    private Set<Comment> comments = new HashSet<>();
+    private Set<Comment> comments;
 
     public long getId() {
         return id;
@@ -110,7 +110,11 @@ public class Event {
         return time;
     }
 
-    public Integer getPerson() {
+    public Set<Person> getPerson() {
+        return person;
+    }
+
+    public Integer getPersonCap() {
         return Optional.of(person.size()).orElse(null);
     }
 
