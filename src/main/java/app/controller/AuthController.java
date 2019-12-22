@@ -9,7 +9,7 @@ import app.dto.resp.RegisterResp;
 import app.service.AuthService;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api")
 public class AuthController {
