@@ -27,7 +27,7 @@ public class PersonController {
     }
 
     @GetMapping(Paths.getPersonPath)
-    public Optional<Person> handle_get(@RequestBody TokenReq req) {
+    public Optional<Person> handle_get(@RequestHeader (name="Authorization") TokenReq req) {
         Optional<Long> userId = Optional.of(req.getToken())
                 .flatMap(jwt::tokenToClaim)
                 .map(jwt::extractUserIdFromClaims);
