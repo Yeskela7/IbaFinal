@@ -8,6 +8,7 @@ import app.security.jwt.JwtTokenServiceImpl;
 import app.security.userdetails.MyUserDetailsService;
 import app.service.EventService;
 import app.service.PersonService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -15,10 +16,13 @@ import java.util.Optional;
 @CrossOrigin
 @RestController
 public class EventController {
-
+    @Autowired
     private final EventService eventService;
+    @Autowired
     private final PersonService personService;
+    @Autowired
     private final MyUserDetailsService uds;
+    @Autowired
     private final JwtTokenServiceImpl jwt;
 
     public EventController(EventService service, PersonService personService, MyUserDetailsService uds, JwtTokenServiceImpl jwt) {
@@ -78,9 +82,12 @@ public class EventController {
                 .map(jwt::extractUserIdFromClaims);
         Optional<Person> person = personService.getById(userId.get());
         eventService.savePersonIntoEvent(id,person.get());
+        Event event = eventService.getById(id).get();
         System.out.println("------------------------");
         System.out.println(eventService.getAll());
+        System.out.println(event);
         System.out.println("------------------------");
+        eventService.update(event);
         return "Person joined";
     }
 }

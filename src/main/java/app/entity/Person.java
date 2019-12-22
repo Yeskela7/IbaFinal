@@ -54,7 +54,6 @@ public class Person {
     private Collection<Event> events = new HashSet<>();
 
 
-
     public Person(@NotBlank(message = "Email is required") String email,
                   @NotBlank(message = "Password is required") String password,
                   @NotBlank(message = "Name is required") String name,

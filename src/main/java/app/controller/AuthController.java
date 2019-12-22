@@ -8,14 +8,16 @@ import app.dto.resp.LogoutResp;
 import app.dto.resp.RegisterResp;
 import app.service.AuthService;
 import app.service.PersonService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api")
 public class AuthController {
-
+    @Autowired
     private final AuthService authService;
+    @Autowired
     private final PersonService personService;
 
     public AuthController(AuthService authService, PersonService personService) {

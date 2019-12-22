@@ -24,6 +24,7 @@ public class Tag {
     @Column(name = "title")
     private String title;
 
+
     @JsonBackReference
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy="tags")
     private Collection<Event> events =  new HashSet<>();

@@ -5,6 +5,7 @@ import app.entity.Person;
 import app.security.jwt.JwtTokenServiceImpl;
 import app.security.userdetails.MyUserDetailsService;
 import app.service.PersonService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -12,9 +13,11 @@ import java.util.Optional;
 @RestController
 @RequestMapping
 public class PersonController {
-
+    @Autowired
     private final PersonService personService;
+    @Autowired
     private final MyUserDetailsService uds;
+    @Autowired
     private final JwtTokenServiceImpl jwt;
 
     public PersonController(PersonService service, MyUserDetailsService uds, JwtTokenServiceImpl jwt) {

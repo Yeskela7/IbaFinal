@@ -89,6 +89,10 @@ public class EventService {
         eventRepository.findById(eventId).get().addNewPersonToEvent(person);
     }
 
+    public void update(Event event){
+        eventRepository.save(event);
+    }
+
     public void deleteEventById(long id) {
         eventRepository.deleteById(id);
     }
