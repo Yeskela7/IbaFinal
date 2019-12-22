@@ -17,17 +17,17 @@ public class PersonController {
         this.personService = service;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(Paths.get_by_person_id + "{id}")
     public Optional<Person> handle_get(long id) {
         return personService.getById(id);
     }
 
-    @GetMapping("/{email}")
+    @GetMapping(Paths.get_person_by_email + "{email}")
     public Optional<Person> handle_get_email(@PathVariable("email") String email) {
         return personService.getByEmail(email);
     }
 
-    @GetMapping("/{event}")
+    @GetMapping(Paths.get_events_person + "{event}")
     public Iterable<Person> handle_get_event(@PathVariable("event") Event event) {
         return personService.getAllByEvent(event);
     }

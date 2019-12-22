@@ -18,6 +18,9 @@ public class Comment {
     @Column(unique = true, name = "comment_id")
     private long id;
 
+    @Column(name = "userId")
+    private long user_id;
+
     @Column(name = "title")
     private String title;
 

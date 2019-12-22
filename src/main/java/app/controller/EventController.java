@@ -1,5 +1,6 @@
 package app.controller;
 
+import app.dto.req.EventReq;
 import app.entity.Event;
 import app.service.EventService;
 import org.springframework.web.bind.annotation.*;
@@ -36,7 +37,21 @@ public class EventController {
     }
 
     @PostMapping
-    public void postEvent(@RequestBody Event event){
+    public String postEvent(@RequestBody Event event){
         eventService.saveEvent(event);
+        return "Added";
+    }
+//    String title, long creatorId, String description, long latitude, long longitude, String place, long time
+    @PostMapping("/event/save")
+    public String postEvent(@RequestBody EventReq req){
+        eventService.saveEvent(new Event(
+                req.getTitle(),
+                req.getCreatorId(),
+                req.getDescription(),
+                req.getLatitude(),
+                req.getLongitude(),
+                req.getPlace(),
+                req.getTime()));
+        return "Added";
     }
 }

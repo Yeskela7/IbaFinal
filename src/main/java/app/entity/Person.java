@@ -39,8 +39,8 @@ public class Person {
     @Column( name = "password")
     private String password;
 
-//    @Pattern(regexp="^(([0-3][0-9])([/])(0[1-9]|1[0-2])([/])([1-2][0-9][0-9][0-9]))$",
-//            message="Must be formatted DD/MM/YYYY")
+    @Pattern(regexp="^(([0-3][0-9])([/])(0[1-9]|1[0-2])([/])([1-2][0-9][0-9][0-9]))$",
+            message="Must be formatted DD/MM/YYYY")
     @Column(name = "birth_date")
     private String birth_date;
 //
@@ -50,39 +50,15 @@ public class Person {
     @ManyToMany(mappedBy="person")
     private Set<Event> events =  new HashSet<>();
 
-    public Person(@NotBlank(message = "Name is required") String name,
-                  @NotBlank(message = "Surname is required") String surname,
-                  @NotBlank(message = "Email is required") String email,
+    public Person(@NotBlank(message = "Email is required") String email,
                   @NotBlank(message = "Password is required") String password,
-                  @NotBlank(message = "Birth date is required") String birth_date) {
+                  @NotBlank(message = "Name is required") String name,
+                  @NotBlank(message = "Surname is required") String surname,
+                  @NotBlank(message = "birth_date is required") String birth_date) {
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.password = password;
         this.birth_date = birth_date;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getBirth_date() {
-        return birth_date;
     }
 }
