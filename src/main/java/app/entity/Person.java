@@ -43,7 +43,7 @@ public class Person {
             message="Must be formatted DD/MM/YYYY")
     @Column(name = "birth_date")
     private String birth_date;
-//
+
 //    @Column(name = "picURl")
 //    private String picURL;
 

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class ApiController {
 
-    @GetMapping("/guest")
+    @GetMapping("/login/")
     public ApiMessageResp handleGuest(){
         return new ApiMessageResp("OK:any unregistered");
     }
@@ -24,7 +24,7 @@ public class ApiController {
         return new ApiMessageResp("OK:any authorized with USER role");
     }
 
-    @GetMapping("/event")
+    @GetMapping("/event/*")
     public ApiMessageResp handleEvent(){
         return new ApiMessageResp("OK:any authorized with USER role");
     }

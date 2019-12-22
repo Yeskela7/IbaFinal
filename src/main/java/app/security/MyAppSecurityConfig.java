@@ -33,7 +33,7 @@ public class MyAppSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/register/**", "/api/login/**").permitAll()
                 .antMatchers("/guest/**", "/api/guest/**").permitAll()
                 .antMatchers("/home/**", "/api/home/**").authenticated()
-                .antMatchers("/**").permitAll()
+                .antMatchers("/event/**", "/api/event/**").authenticated()
                 .antMatchers("/me/**", "/api/user/**").hasRole("USER")
                 .anyRequest().authenticated();
         http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
