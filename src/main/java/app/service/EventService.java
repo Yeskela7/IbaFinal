@@ -86,21 +86,12 @@ public class EventService {
     }
 
     public void savePersonIntoEvent(long eventId,Person person){
-        eventRepository.findById(eventId).get().getPerson().add(person);
+        eventRepository.findById(eventId).get().addNewPersonToEvent(person);
     }
 
     public void deleteEventById(long id) {
         eventRepository.deleteById(id);
     }
 
-    public Iterable<Comment> getCommentsByEvent(Event event) {
-        return event.getComments();
-    }
 
-    public Iterable<Comment> getCommentsByEventTitle(String title) {
-        if (eventRepository.findByTitle(title).isPresent()) {
-            return eventRepository.findByTitle(title).get().getComments();
-        }
-        throw new RuntimeException("No Event with this title");
-    }
 }

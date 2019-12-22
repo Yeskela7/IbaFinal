@@ -31,6 +31,9 @@ public class EventController {
     //TODO getAll++
     @GetMapping(Paths.getEventPath)
     public Iterable<Event> handle_get_all() {
+        System.out.println("------------------------");
+        System.out.println(eventService.getAll());
+        System.out.println("------------------------");
         return eventService.getAll();
     }
 
@@ -75,6 +78,9 @@ public class EventController {
                 .map(jwt::extractUserIdFromClaims);
         Optional<Person> person = personService.getById(userId.get());
         eventService.savePersonIntoEvent(id,person.get());
+        System.out.println("------------------------");
+        System.out.println(eventService.getAll());
+        System.out.println("------------------------");
         return "Person joined";
     }
 }

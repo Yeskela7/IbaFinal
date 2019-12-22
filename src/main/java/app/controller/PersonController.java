@@ -1,7 +1,9 @@
 package app.controller;
 
-import app.entity.Event;
+import app.dto.req.TokenReq;
 import app.entity.Person;
+import app.security.jwt.JwtTokenServiceImpl;
+import app.security.userdetails.MyUserDetailsService;
 import app.service.PersonService;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,16 +14,22 @@ import java.util.Optional;
 public class PersonController {
 
     private final PersonService personService;
+    private final MyUserDetailsService uds;
+    private final JwtTokenServiceImpl jwt;
 
-    public PersonController(PersonService service) {
+    public PersonController(PersonService service, MyUserDetailsService uds, JwtTokenServiceImpl jwt) {
         this.personService = service;
+        this.uds = uds;
+        this.jwt = jwt;
     }
 
-
-    ///TODO get id from token
     @GetMapping(Paths.getPersonPath)
-    public Optional<Person> handle_get(long id) {
-        return personService.getById(id);
+    public Optional<Person> handle_get(@RequestBody TokenReq req) {
+        Optional<Long> userId = Optional.of(req.getToken())
+                .flatMap(jwt::tokenToClaim)
+                .map(jwt::extractUserIdFromClaims);
+        Optional<Person> person = personService.getById(userId.get());
+        return person;
     }
 
 //    @GetMapping(Paths.get_person_by_email + "{email}")

@@ -7,6 +7,7 @@ import app.dto.resp.LoginResp;
 import app.dto.resp.LogoutResp;
 import app.dto.resp.RegisterResp;
 import app.service.AuthService;
+import app.service.PersonService;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -15,9 +16,11 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
 
     private final AuthService authService;
+    private final PersonService personService;
 
-    public AuthController(AuthService authService) {
+    public AuthController(AuthService authService, PersonService personService) {
         this.authService = authService;
+        this.personService = personService;
     }
 
     @PostMapping("/login")

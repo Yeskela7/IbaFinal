@@ -1,5 +1,6 @@
 package app.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -8,6 +9,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -47,8 +49,11 @@ public class Person {
 //    @Column(name = "picURl")
 //    private String picURL;
 
-    @ManyToMany(mappedBy="person")
-    private Set<Event> events;
+    @JsonBackReference
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy="person")
+    private Collection<Event> events = new HashSet<>();
+
+
 
     public Person(@NotBlank(message = "Email is required") String email,
                   @NotBlank(message = "Password is required") String password,
