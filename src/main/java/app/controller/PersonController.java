@@ -6,7 +6,7 @@ import app.service.PersonService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
-
+@CrossOrigin
 @RestController
 @RequestMapping("/profile")
 public class PersonController {

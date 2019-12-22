@@ -1,5 +1,6 @@
 package app.dto.req;
 
+import app.entity.Geo;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,18 +11,16 @@ public class EventReq {
     private String title;
     private long creatorId;
     private String description;
-    private long latitude;
-    private long longitude;
     private String place;
+    private Geo geo;
     private long time;
 
-    public EventReq(String title, long creatorId, String description, long latitude, long longitude, String place, long time) {
+    public EventReq(String title, long creatorId, String description, String place, Geo geo, long time) {
         this.title = title;
         this.creatorId = creatorId;
         this.description = description;
-        this.latitude = latitude;
-        this.longitude = longitude;
         this.place = place;
+        this.geo = geo;
         this.time = time;
     }
 
@@ -37,12 +36,8 @@ public class EventReq {
         return description;
     }
 
-    public long getLatitude() {
-        return latitude;
-    }
-
-    public long getLongitude() {
-        return longitude;
+    public Geo getGeo() {
+        return geo;
     }
 
     public String getPlace() {

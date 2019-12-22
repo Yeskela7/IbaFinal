@@ -31,11 +31,15 @@ public class Event {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "latitude")
-    private long latitude;
+    @Embedded
+    @Column(name = "geo")
+    private Geo geo;
 
-    @Column(name = "longitude")
-    private long longitude;
+//    @Column(name = "latitude")
+//    private long latitude;
+//
+//    @Column(name = "longitude")
+//    private long longitude;
 
     @Column(name = "place")
     private String place;
@@ -52,12 +56,11 @@ public class Event {
     )
     private Set<Person> person = new HashSet<>();
 
-    public Event(String title, long creatorId, String description, long latitude, long longitude, String place, long time) {
+    public Event(String title, long creatorId, String description, Geo geo, String place, long time) {
         this.title = title;
         this.creatorId = creatorId;
         this.description = description;
-        this.latitude = latitude;
-        this.longitude = longitude;
+        this.geo = geo;
         this.place = place;
         this.time = time;
     }
@@ -96,12 +99,8 @@ public class Event {
         return description;
     }
 
-    public long getLatitude() {
-        return latitude;
-    }
-
-    public long getLongitude() {
-        return longitude;
+    public Geo getGeo() {
+        return geo;
     }
 
     public String getPlace() {

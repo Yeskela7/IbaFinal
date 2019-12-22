@@ -11,6 +11,5 @@ public class RegisterReq {
     private String password;
     private String name;
     private String surname;
-    private String birthDate;
 
 }

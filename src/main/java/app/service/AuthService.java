@@ -32,10 +32,10 @@ public class AuthService {
         this.enc = enc;
     }
 
-    public boolean registerNew(String email, String password,String name,String surname,String birthDate) {
+    public boolean registerNew(String email, String password,String name,String surname) {
         Optional<Person> found = repo.findByEmail(email);
         if (!found.isPresent()) {
-            repo.save(new Person(email,enc.encode(password),name,surname,birthDate));
+            repo.save(new Person(email,enc.encode(password),name,surname));
         }
         return !found.isPresent();
     }

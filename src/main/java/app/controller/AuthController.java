@@ -7,11 +7,9 @@ import app.dto.resp.LoginResp;
 import app.dto.resp.LogoutResp;
 import app.dto.resp.RegisterResp;
 import app.service.AuthService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api")
 public class AuthController {
@@ -36,7 +34,7 @@ public class AuthController {
 
     @PostMapping("/register")
     public RegisterResp handleRegister(@RequestBody RegisterReq rq){
-        boolean result = authService.registerNew(rq.getEmail(),rq.getPassword(),rq.getName(),rq.getSurname(),rq.getBirthDate());
+        boolean result = authService.registerNew(rq.getEmail(),rq.getPassword(),rq.getName(),rq.getSurname());
         return result ? RegisterResp.Ok() : RegisterResp.AlreadyExists();
     }
 }

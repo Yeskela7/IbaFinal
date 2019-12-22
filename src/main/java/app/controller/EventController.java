@@ -2,11 +2,13 @@ package app.controller;
 
 import app.dto.req.EventReq;
 import app.entity.Event;
+import app.entity.Geo;
 import app.service.EventService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
+@CrossOrigin
 @RestController
 public class EventController {
 
@@ -36,20 +38,18 @@ public class EventController {
 //        return eventService.getByTitle(title);
 //    }
 
-    @PostMapping
-    public String postEvent(@RequestBody Event event){
-        eventService.saveEvent(event);
-        return "Added";
-    }
-
+//    @PostMapping
+//    public String postEvent(@RequestBody Event event){
+//        eventService.saveEvent(event);
+//        return "Added";
+//    }
+//    String title, long creatorId, String description, Geo geo, String place, long time
     @PostMapping(Paths.getPath)
     public String postEvent(@RequestBody EventReq req){
-        eventService.saveEvent(new Event(
-                req.getTitle(),
+        eventService.saveEvent(new Event(req.getTitle(),
                 req.getCreatorId(),
                 req.getDescription(),
-                req.getLatitude(),
-                req.getLongitude(),
+                req.getGeo(),
                 req.getPlace(),
                 req.getTime()));
         return "Added";

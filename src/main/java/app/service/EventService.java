@@ -80,7 +80,7 @@ public class EventService {
         eventRepository.findAll().forEach(events::add);
         return events.stream()
                 .filter(event -> Converter
-                        .getDistance(event.getLatitude(), event.getLongitude(), lat, longitude) < 2)
+                        .getDistance(event.getGeo().getLatitude(), event.getGeo().getLongitude(), lat, longitude) < 2)
                 .collect(Collectors.toSet());
     }
 
