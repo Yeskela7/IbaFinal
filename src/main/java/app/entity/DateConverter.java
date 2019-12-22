@@ -2,6 +2,7 @@ package app.entity;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class DateConverter {
 
@@ -17,15 +18,14 @@ public class DateConverter {
     }
 
     public static long stringToMills(String time, String date) throws ParseException {
-        try {
-            return formatForDate.parse(time + " " + date).getTime();
-        } catch (ParseException ex) {
-            return 0;
-        }
+        String myDate = date + " " + time;
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        Date dated = sdf.parse(myDate);
+        return dated.getTime();
     }
 
-    public static long hour(int hour) {
-        return 1000 * 60 * 60 * hour;
-    }
+//    public static long hour(int hour) {
+//        return 1000 * 60 * 60 * hour;
+//    }
 
 }
