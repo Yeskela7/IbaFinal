@@ -1,6 +1,9 @@
 package app.service;
 
-import app.entity.*;
+import app.entity.Converter;
+import app.entity.Event;
+import app.entity.Person;
+import app.entity.Tag;
 import app.repository.EventRepository;
 import org.springframework.stereotype.Service;
 
@@ -77,7 +80,7 @@ public class EventService {
         eventRepository.findAll().forEach(events::add);
         return events.stream()
                 .filter(event -> Converter
-                        .getDistance(event.getGeo().getLatitude(), event.getGeo().getLongitude(), lat, longitude) < 2)
+                        .getDistance(event.getLocation().getLatitude(), event.getLocation().getLongitude(), lat, longitude) < 2)
                 .collect(Collectors.toSet());
     }
 
@@ -85,11 +88,16 @@ public class EventService {
         eventRepository.save(event);
     }
 
-    public void savePersonIntoEvent(long eventId,Person person){
-        eventRepository.findById(eventId).get().addNewPersonToEvent(person);
+    public void savePersonIntoEvent(long eventId, Person person) {
+        boolean contains = eventRepository.findById(eventId).get().getGuests().contains(person);
+        if (contains) {
+            eventRepository.findById(eventId).get().deletePersonFromEvent(person);
+        } else {
+            eventRepository.findById(eventId).get().addNewPersonToEvent(person);
+        }
     }
 
-    public void update(Event event){
+    public void update(Event event) {
         eventRepository.save(event);
     }
 

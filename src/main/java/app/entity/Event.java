@@ -1,7 +1,6 @@
 package app.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonView;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -11,7 +10,6 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -37,7 +35,7 @@ public class Event {
     private String description;
 
     @Embedded
-    private Geo geo;
+    private Geo location;
 
 //    @Column(name = "latitude")
 //    private long latitude;
@@ -59,9 +57,14 @@ public class Event {
             inverseJoinColumns = {
                     @JoinColumn(name = "user_id")}
     )
-    private Collection<Person> person = new HashSet<>();
+    private Collection<Person> guests = new HashSet<>();
 
-//    @JsonManagedReference
+    public Collection<Person> getGuests() {
+        return guests;
+    }
+
+
+    //    @JsonManagedReference
 //    @ManyToMany(cascade = CascadeType.ALL, targetEntity = Person.class)
 //    @JoinTable(name = "c_person_event",
 //            joinColumns = {
@@ -72,16 +75,18 @@ public class Event {
 //    private Collection<Person> person = new HashSet<>();
 
     public void addNewPersonToEvent(Person p){
-        System.out.println(p);
-        person.add(p);
-        System.out.println(person);
+        guests.add(p);
     }
 
-    public Event(String title, long creatorId, String description, Geo geo, String place, long time) {
+    public void deletePersonFromEvent(Person p){
+        guests.remove(p);
+    }
+
+    public Event(String title, long creatorId, String description, Geo location, String place, long time) {
         this.title = title;
         this.creatorId = creatorId;
         this.description = description;
-        this.geo = geo;
+        this.location = location;
         this.place = place;
         this.time = time;
     }
@@ -114,14 +119,14 @@ public class Event {
         comments.addAll(c);
     }
 
-    public Event(String title, long creatorId, String description, Geo geo, String place, long time, Collection<Person> person, Collection<Tag> tags, Collection<Comment> comments) {
+    public Event(String title, long creatorId, String description, Geo location, String place, long time, Collection<Person> person, Collection<Tag> tags, Collection<Comment> comments) {
         this.title = title;
         this.creatorId = creatorId;
         this.description = description;
-        this.geo = geo;
+        this.location = location;
         this.place = place;
         this.time = time;
-        this.person = StreamSupport.stream(person.spliterator(), false).collect(Collectors.toSet());
+        this.guests = StreamSupport.stream(person.spliterator(), false).collect(Collectors.toSet());
         this.tags = StreamSupport.stream(tags.spliterator(), false).collect(Collectors.toSet());
         this.comments = StreamSupport.stream(comments.spliterator(), false).collect(Collectors.toSet());
     }
@@ -142,8 +147,8 @@ public class Event {
         return description;
     }
 
-    public Geo getGeo() {
-        return geo;
+    public Geo getLocation() {
+        return location;
     }
 
     public String getPlace() {
@@ -155,6 +160,6 @@ public class Event {
     }
 
     public Integer getPersonCap() {
-        return Optional.of(person.size()).orElse(null);
+        return Optional.of(guests.size()).orElse(null);
     }
 }

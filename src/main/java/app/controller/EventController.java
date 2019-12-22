@@ -69,7 +69,7 @@ public class EventController {
         eventService.saveEvent(new Event(req.getTitle(),
                 req.getCreatorId(),
                 req.getDescription(),
-                req.getGeo(),
+                req.getLocation(),
                 req.getPlace(),
                 req.getTime()));
         return "Added";
@@ -83,11 +83,7 @@ public class EventController {
         Optional<Person> person = personService.getById(userId.get());
         eventService.savePersonIntoEvent(id,person.get());
         Event event = eventService.getById(id).get();
-        System.out.println("------------------------");
-        System.out.println(eventService.getAll());
-        System.out.println(event);
-        System.out.println("------------------------");
-        eventService.update(event);
+        eventService.saveEvent(event);
         return "Person joined";
     }
 }
