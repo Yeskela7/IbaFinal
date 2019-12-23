@@ -2,7 +2,6 @@ package app.dto.req;
 
 import app.entity.Geo;
 import app.entity.Person;
-import app.entity.Tag;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Getter;
