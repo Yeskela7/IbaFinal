@@ -9,6 +9,4 @@ public class NearBy {
                         Math.cos((user_lon - event_lon) * Math.PI / 180.0)) * earthRadius;
         return distance;
     }
-
-
 }
