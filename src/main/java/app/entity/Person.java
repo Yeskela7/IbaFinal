@@ -54,10 +54,10 @@ public class Person {
 
 
     public Person(@NotBlank(message = "Email is required") String email,
+                  @NotBlank(message = "Password is required") String password,
                   @NotBlank(message = "Name is required") String name,
                   @NotBlank(message = "Surname is required") String surname,
                   @NotBlank(message = "City is required") String city,
-                  @NotBlank(message = "Password is required") String password,
                   String regTime) {
         this.name = name;
         this.surname = surname;
