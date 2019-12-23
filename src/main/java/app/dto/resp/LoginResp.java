@@ -1,5 +1,6 @@
 package app.dto.resp;
 
+import app.entity.Person;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -7,7 +8,7 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class LoginResp {
-    private String message;
+    private Person person;
     private String token;
 
 }

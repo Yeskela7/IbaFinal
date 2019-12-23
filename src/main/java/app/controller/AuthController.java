@@ -28,8 +28,8 @@ public class AuthController {
     @PostMapping("/login")
     public LoginResp handleLogin(@RequestBody LoginReq lr) {
         return authService.login(lr.getEmail(), lr.getPassword(), lr.isRemember())
-                .map(t -> new LoginResp("Ok", t))
-                .orElse(new LoginResp("Error", null));
+                .map(t -> new LoginResp(personService.getByEmail(lr.getEmail()).get(), t))
+                .orElse(new LoginResp(null, null));
     }
 
     @PostMapping("/logout")
