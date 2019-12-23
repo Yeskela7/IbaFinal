@@ -10,6 +10,8 @@ public class PersonResp {
     private String email;
     private String name;
     private String surname;
+    private String city;
+    private String regTime;
 
 
     public long getId() {

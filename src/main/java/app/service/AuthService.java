@@ -1,5 +1,6 @@
 package app.service;
 
+import app.entity.DateConverter;
 import app.entity.Person;
 import app.repository.PersonRepository;
 import app.security.jwt.Const;
@@ -12,6 +13,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.Optional;
 
 @Service
@@ -32,10 +34,12 @@ public class AuthService {
         this.enc = enc;
     }
 
-    public boolean registerNew(String email, String password,String name,String surname) {
+    public boolean registerNew(String email, String password,String name,String surname,String city) {
+        Date date = new Date();
+        String regTime = DateConverter.millsToString(date.getTime());
         Optional<Person> found = repo.findByEmail(email);
         if (!found.isPresent()) {
-            repo.save(new Person(email,enc.encode(password),name,surname));
+            repo.save(new Person(email,enc.encode(password),name,surname, city,regTime));
         }
         return !found.isPresent();
     }

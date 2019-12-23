@@ -35,7 +35,10 @@ public class PersonController {
                 .map(jwt::extractUserIdFromClaims);
         Optional<Person> person = personService.getById(userId.get());
         return new PersonResp(person.get().getId(),person.get().getEmail(),
-                person.get().getName(),person.get().getSurname());
+                person.get().getName()
+                ,person.get().getSurname()
+                ,person.get().getCity()
+                ,person.get().getRegTime());
     }
 
     @GetMapping(Paths.getJoinedEvent)
@@ -46,18 +49,4 @@ public class PersonController {
         return personService.getMyEvents(userId.get());
     }
 
-//    @GetMapping(Paths.get_person_by_email + "{email}")
-//    public Optional<Person> handle_get_email(@PathVariable("email") String email) {
-//        return personService.getByEmail(email);
-//    }
-
-//    @GetMapping(Paths.get_events_person + "{event}")
-//    public Iterable<Person> handle_get_event(@PathVariable("event") Event event) {
-//        return personService.getAllByEvent(event);
-//    }
-
-//    @PostMapping
-//    public void postPerson(@RequestBody Person person) {
-//        personService.savePerson(person);
-//    }
 }

@@ -39,7 +39,7 @@ public class AuthController {
 
     @PostMapping("/register")
     public RegisterResp handleRegister(@RequestBody RegisterReq rq){
-        boolean result = authService.registerNew(rq.getEmail(),rq.getPassword(),rq.getName(),rq.getSurname());
+        boolean result = authService.registerNew(rq.getEmail(),rq.getPassword(),rq.getName(),rq.getSurname(), rq.getCity());
         return result ? RegisterResp.Ok() : RegisterResp.AlreadyExists();
     }
 }

@@ -6,22 +6,22 @@ import java.util.Date;
 
 public class DateConverter {
 
-    private static SimpleDateFormat formatForDate = new SimpleDateFormat("dd/MM/yyyy");
-    private static SimpleDateFormat formatForTime = new SimpleDateFormat("HH:mm");
+    private static SimpleDateFormat formatForDate = new SimpleDateFormat("HH:mm dd/MM/yyyy");
 
-    public static String millsToDate(Long mills) {
+    public static String format(long mills) {
         return formatForDate.format(mills);
     }
 
-    public static String millsToTime(Long mills) {
-        return formatForTime.format(mills);
+    public static String millsToString(Long mills) {
+        return formatForDate.format(mills);
     }
 
-    public static long stringToMills(String time, String date) throws ParseException {
-        String myDate = date + " " + time;
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-        Date dated = sdf.parse(myDate);
-        return dated.getTime();
+    public static long stringToMills(String string) throws ParseException {
+        try {
+            return formatForDate.parse(string).getTime();
+        } catch (ParseException ex) {
+            return 0;
+        }
     }
 
 }
