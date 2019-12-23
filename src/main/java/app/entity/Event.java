@@ -31,17 +31,14 @@ public class Event {
     @Column(name = "creatorId")
     private long creatorId;
 
+    @Column(name = "category")
+    private long category;
+
     @Column(name = "description")
     private String description;
 
     @Embedded
     private Geo location;
-
-//    @Column(name = "latitude")
-//    private long latitude;
-//
-//    @Column(name = "longitude")
-//    private long longitude;
 
     @Column(name = "place")
     private String place;
@@ -94,20 +91,18 @@ public class Event {
         this.date = date;
     }
 
-
-    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY, targetEntity = Tag.class)
-            @JoinTable(name = "c_tag_event",
-            joinColumns = {
-                    @JoinColumn(name = "e_id", referencedColumnName = "event_id")},
-            inverseJoinColumns = {
-                    @JoinColumn(name = "t_id", referencedColumnName = "tag_id")}
-    )
-    private Collection<Tag> category = new HashSet<>();
-
-    public void addTagsToEvent(Collection<? extends Tag> t){
-        category.addAll(t);
-    }
-
+//    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY, targetEntity = Tag.class)
+//            @JoinTable(name = "c_tag_event",
+//            joinColumns = {
+//                    @JoinColumn(name = "e_id", referencedColumnName = "event_id")},
+//            inverseJoinColumns = {
+//                    @JoinColumn(name = "t_id", referencedColumnName = "tag_id")}
+//    )
+//    private Collection<Tag> category = new HashSet<>();
+//
+//    public void addTagsToEvent(Collection<? extends Tag> t){
+//        category.addAll(t);
+//    }
 
     @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY, targetEntity = Comment.class)
     @JoinTable(name = "c_comment_event",
@@ -122,7 +117,7 @@ public class Event {
         comments.addAll(c);
     }
 
-    public Event(String title, long creatorId, String description, Geo location, String place, String time, String date, Collection<Person> person, Collection<Tag> category, Collection<Comment> comments) {
+    public Event(String title, long creatorId, String description, Geo location, String place, String time, String date, Collection<Person> person, long category, Collection<Comment> comments) {
         this.title = title;
         this.creatorId = creatorId;
         this.description = description;
@@ -131,7 +126,7 @@ public class Event {
         this.time = time;
         this.date = date;
         this.guests = StreamSupport.stream(person.spliterator(), false).collect(Collectors.toSet());
-        this.category = StreamSupport.stream(category.spliterator(), false).collect(Collectors.toSet());
+        this.category = category;
         this.comments = StreamSupport.stream(comments.spliterator(), false).collect(Collectors.toSet());
     }
 
@@ -171,17 +166,16 @@ public class Event {
         return Optional.of(guests.size()).orElse(null);
     }
 
-
-    public void setId(long id) {
-        this.id = id;
+    public long getCategory() {
+        return category;
     }
 
     public void setTitle(String title) {
         this.title = title;
     }
 
-    public void setCreatorId(long creatorId) {
-        this.creatorId = creatorId;
+    public void setCategory(long category) {
+        this.category = category;
     }
 
     public void setDescription(String description) {

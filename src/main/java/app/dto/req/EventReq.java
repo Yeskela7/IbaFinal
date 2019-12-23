@@ -2,6 +2,7 @@ package app.dto.req;
 
 import app.entity.Geo;
 import app.entity.Person;
+import app.entity.Tag;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Getter;
@@ -19,9 +20,10 @@ public class EventReq {
     private Geo location;
     private String date;
     private String time;
+    private long category;
     private boolean isJoined;
 
-    public EventReq(long id, String title, Person author, String description, String place, Geo location, String date, String time, boolean isJoined) {
+    public EventReq(long id, String title, Person author, String description, String place, Geo location, String date, String time, long category, boolean isJoined) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -30,7 +32,12 @@ public class EventReq {
         this.location = location;
         this.date = date;
         this.time = time;
+        this.category = category;
         this.isJoined = isJoined;
+    }
+
+    public long getCategory() {
+        return category;
     }
 
     public long getId() {

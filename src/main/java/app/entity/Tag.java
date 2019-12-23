@@ -21,11 +21,9 @@ public class Tag {
     @Column(unique = true, name = "tag_id")
     private long id;
 
-    @Column(name = "title")
+    @Column(unique = true, name = "title")
     private String title;
 
 
-    @JsonBackReference
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy="category")
-    private Collection<Event> events =  new HashSet<>();
+
 }

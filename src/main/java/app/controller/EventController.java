@@ -2,9 +2,7 @@ package app.controller;
 
 import app.dto.req.EventReq;
 import app.dto.req.TokenReq;
-import app.entity.DateConverter;
 import app.entity.Event;
-import app.entity.Geo;
 import app.entity.Person;
 import app.security.jwt.JwtTokenServiceImpl;
 import app.security.userdetails.MyUserDetailsService;
@@ -35,13 +33,11 @@ public class EventController {
         this.jwt = jwt;
     }
 
-    //TODO getAll++
     @GetMapping(Paths.getEventPath)
     public Iterable<Event> handle_get_all() {
         return eventService.getAll();
     }
 
-    //TODO getById++
     @GetMapping(Paths.getEventPath + "{id}")
     public EventReq handle_get(@PathVariable("id") long id____, @RequestHeader (name="Authorization") TokenReq req) {
         Optional<Long> userId = Optional.of(req.getToken().split(" ")[1])
@@ -58,6 +54,7 @@ public class EventController {
                 event.getLocation(),
                 event.getDate(),
                 event.getTime(),
+                event.getCategory(),
                 eventService.contains(id____,joiner));
     }
 
@@ -103,6 +100,7 @@ public class EventController {
         event.setDescription(req.getDescription());
         event.setLocation(req.getLocation());
         event.setPlace(req.getPlace());
+        event.setCategory(req.getCategory());
 
         eventService.update(event);
         return "Update done";

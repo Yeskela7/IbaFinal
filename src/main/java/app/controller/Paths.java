@@ -6,4 +6,5 @@ public class Paths {
     public static final String getPersonPath="/api/profile/";
     public static final String getNearBy = "/api/nearBy";
     public static final String getJoinedEvent = "/api/joined/";
+    public static final String getCategories = "/api/categories";
 }

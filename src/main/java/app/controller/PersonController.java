@@ -1,6 +1,7 @@
 package app.controller;
 
 import app.dto.req.TokenReq;
+import app.dto.resp.PersonResp;
 import app.entity.Event;
 import app.entity.Person;
 import app.security.jwt.JwtTokenServiceImpl;
@@ -28,12 +29,13 @@ public class PersonController {
     }
 
     @GetMapping(Paths.getPersonPath)
-    public Optional<Person> handle_get(@RequestHeader (name="Authorization") TokenReq req) {
+    public PersonResp handle_get(@RequestHeader (name="Authorization") TokenReq req) {
         Optional<Long> userId = Optional.of(req.getToken().split(" ")[1])
                 .flatMap(jwt::tokenToClaim)
                 .map(jwt::extractUserIdFromClaims);
         Optional<Person> person = personService.getById(userId.get());
-        return person;
+        return new PersonResp(person.get().getId(),person.get().getEmail(),
+                person.get().getName(),person.get().getSurname());
     }
 
     @GetMapping(Paths.getJoinedEvent)

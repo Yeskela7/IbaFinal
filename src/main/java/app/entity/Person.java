@@ -67,6 +67,22 @@ public class Person {
         this.password = password;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
     public Collection<Event> getEvents() {
         return events;
     }

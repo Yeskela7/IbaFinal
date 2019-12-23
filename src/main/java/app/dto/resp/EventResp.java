@@ -8,6 +8,7 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class EventResp {
+    private long id;
     private String title;
     private Person author;
     private String description;
@@ -15,5 +16,6 @@ public class EventResp {
     private Geo location;
     private String date;
     private String time;
+    private long category;
     private boolean isJoined;
 }
