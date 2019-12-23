@@ -10,5 +10,4 @@ import lombok.NoArgsConstructor;
 @Data
 public class ApiMessageResp {
     private String content;
-
 }

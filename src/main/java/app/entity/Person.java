@@ -8,10 +8,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -51,7 +49,6 @@ public class Person {
     @JsonBackReference
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy="guests")
     private Collection<Event> events = new HashSet<>();
-
 
     public Person(@NotBlank(message = "Email is required") String email,
                   @NotBlank(message = "Password is required") String password,

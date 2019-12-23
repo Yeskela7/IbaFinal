@@ -26,7 +26,6 @@ public class Comment {
     @Column(name = "title")
     private String title;
 
-
     @JsonBackReference
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy="comments")
     private Collection<Event> events =  new HashSet<>();

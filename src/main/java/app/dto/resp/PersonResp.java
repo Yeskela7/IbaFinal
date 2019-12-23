@@ -13,7 +13,6 @@ public class PersonResp {
     private String city;
     private String regTime;
 
-
     public long getId() {
         return id;
     }

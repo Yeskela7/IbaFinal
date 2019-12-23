@@ -63,16 +63,6 @@ public class Event {
         return guests;
     }
 
-    //    @JsonManagedReference
-//    @ManyToMany(cascade = CascadeType.ALL, targetEntity = Person.class)
-//    @JoinTable(name = "c_person_event",
-//            joinColumns = {
-//                    @JoinColumn(name = "e_id", referencedColumnName = "event_id")},
-//            inverseJoinColumns = {
-//                    @JoinColumn(name = "p_id", referencedColumnName = "user_id")}
-//    )
-//    private Collection<Person> person = new HashSet<>();
-
     public void addNewPersonToEvent(Person p){
         guests.add(p);
     }
@@ -90,19 +80,6 @@ public class Event {
         this.time = time;
         this.date = date;
     }
-
-//    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY, targetEntity = Tag.class)
-//            @JoinTable(name = "c_tag_event",
-//            joinColumns = {
-//                    @JoinColumn(name = "e_id", referencedColumnName = "event_id")},
-//            inverseJoinColumns = {
-//                    @JoinColumn(name = "t_id", referencedColumnName = "tag_id")}
-//    )
-//    private Collection<Tag> category = new HashSet<>();
-//
-//    public void addTagsToEvent(Collection<? extends Tag> t){
-//        category.addAll(t);
-//    }
 
     @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY, targetEntity = Comment.class)
     @JoinTable(name = "c_comment_event",

@@ -9,7 +9,6 @@ public class RegisterResp {
 
     private String message;
 
-
     public static RegisterResp Ok() {
         return new RegisterResp("Ok");
     }

@@ -10,5 +10,4 @@ import lombok.Getter;
 public class LoginResp {
     private Person person;
     private String token;
-
 }

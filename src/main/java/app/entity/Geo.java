@@ -20,7 +20,6 @@ public class Geo {
     @Column(name = "latitude")
     private double latitude;
 
-
     public double getLongitude() {
         return longitude;
     }

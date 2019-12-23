@@ -11,7 +11,6 @@ public class LoginReq {
     private String password;
     private boolean remember;
 
-
     public LoginReq(String email, String password, boolean remember) {
         this.email = email;
         this.password = password;

@@ -58,23 +58,6 @@ public class EventController {
                 eventService.contains(id____,joiner));
     }
 
-//    @GetMapping(Paths.getEventPath+"{tag}")
-//    public Iterable<Event> handle_get_tag(@PathVariable("tag") String tag) {
-//        return eventService.getAllByTag(tag);
-//    }
-//
-//    @GetMapping(Paths.get_by_title+"{title}")
-//    public Optional<Event> handle_get_title(@PathVariable("title") String title) {
-//        return eventService.getByTitle(title);
-//    }
-
-    //    @PostMapping
-//    public String postEvent(@RequestBody Event event){
-//        eventService.saveEvent(event);
-//        return "Added";
-//    }
-//    String title, long creatorId, String description, Geo geo, String place, long time
-    //TODO SaveOne++
     @PostMapping(Paths.getEventPath)
     public String postEvent(@RequestBody EventReq req, @RequestHeader (name="Authorization") TokenReq tokenReq) throws ParseException {
         Optional<Long> userId = Optional.of(tokenReq.getToken().split(" ")[1])

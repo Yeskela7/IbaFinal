@@ -1,13 +1,10 @@
 package app.entity;
 
-import app.dto.req.TokenReq;
 import app.security.jwt.JwtTokenServiceImpl;
 import app.security.userdetails.MyUserDetailsService;
 import net.sf.geographiclib.Geodesic;
 import net.sf.geographiclib.GeodesicLine;
 import net.sf.geographiclib.GeodesicMask;
-
-import java.util.Optional;
 
 public class Converter {
     private final MyUserDetailsService uds;
