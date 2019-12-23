@@ -4,6 +4,7 @@ import app.dto.req.EventReq;
 import app.dto.req.TokenReq;
 import app.entity.DateConverter;
 import app.entity.Event;
+import app.entity.Geo;
 import app.entity.Person;
 import app.security.jwt.JwtTokenServiceImpl;
 import app.security.userdetails.MyUserDetailsService;
@@ -42,8 +43,21 @@ public class EventController {
 
     //TODO getById++
     @GetMapping(Paths.getEventPath + "{id}")
-    public Optional<Event> handle_get(@PathVariable("id") long id____) {
-        return eventService.getById(id____);
+    public EventReq handle_get(@PathVariable("id") long id____, @RequestHeader (name="Authorization") TokenReq req) {
+        Optional<Long> userId = Optional.of(req.getToken().split(" ")[1])
+                .flatMap(jwt::tokenToClaim)
+                .map(jwt::extractUserIdFromClaims);
+        Person joiner = personService.getById(userId.get()).get();
+        Event event = eventService.getById(id____).get();
+        Person person = personService.getById(event.getCreatorId()).get();
+        return new EventReq(event.getTitle(),
+                person,
+                event.getDescription(),
+                event.getPlace(),
+                event.getLocation(),
+                event.getDate(),
+                event.getTime(),
+                eventService.contains(id____,joiner));
     }
 
 //    @GetMapping(Paths.getEventPath+"{tag}")
@@ -64,9 +78,12 @@ public class EventController {
 //    String title, long creatorId, String description, Geo geo, String place, long time
     //TODO SaveOne++
     @PostMapping(Paths.getEventPath)
-    public String postEvent(@RequestBody EventReq req) throws ParseException {
+    public String postEvent(@RequestBody EventReq req, @RequestHeader (name="Authorization") TokenReq tokenReq) throws ParseException {
+        Optional<Long> userId = Optional.of(tokenReq.getToken().split(" ")[1])
+                .flatMap(jwt::tokenToClaim)
+                .map(jwt::extractUserIdFromClaims);
         eventService.saveEvent(new Event(req.getTitle(),
-                req.getCreatorId(),
+                userId.get(),
                 req.getDescription(),
                 req.getLocation(),
                 req.getPlace(),
@@ -75,7 +92,7 @@ public class EventController {
         return "Added";
     }
 
-    @PostMapping(Paths.getNearBy)
+    @GetMapping(Paths.getNearBy)
     public Iterable<Event> nearBy(@RequestParam(name = "latitude") double lat, @RequestParam(name = "longitude") double lon){
         return eventService.getEventNearBy(lat, lon);
     }

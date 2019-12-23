@@ -88,14 +88,22 @@ public class EventService {
         eventRepository.save(event);
     }
 
+    public boolean contains(long eventId, Person person){
+        return eventRepository.findById(eventId).get().getGuests().contains(person);
+    }
+
     public void savePersonIntoEvent(long eventId, Person person) {
-        boolean contains = eventRepository.findById(eventId).get().getGuests().contains(person);
+        boolean contains = contains(eventId, person);
         if (contains) {
             eventRepository.findById(eventId).get().deletePersonFromEvent(person);
         } else {
             eventRepository.findById(eventId).get().addNewPersonToEvent(person);
         }
     }
+//
+//    public Iterable<Event> recent(){
+//        return
+//    }
 
     public void update(Event event) {
         eventRepository.save(event);

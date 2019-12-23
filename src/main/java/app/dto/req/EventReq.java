@@ -1,6 +1,7 @@
 package app.dto.req;
 
 import app.entity.Geo;
+import app.entity.Person;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,19 +10,31 @@ import lombok.NoArgsConstructor;
 @Data
 public class EventReq {
     private String title;
-    private long creatorId;
+    private Person author;
     private String description;
     private String place;
     private Geo location;
     private String date;
     private String time;
+    private boolean isJoined;
+
+    public EventReq(String title, Person author, String description, String place, Geo location, String date, String time, boolean isJoined) {
+        this.title = title;
+        this.author = author;
+        this.description = description;
+        this.place = place;
+        this.location = location;
+        this.date = date;
+        this.time = time;
+        this.isJoined = isJoined;
+    }
 
     public String getTitle() {
         return title;
     }
 
-    public long getCreatorId() {
-        return creatorId;
+    public Person getAuthor() {
+        return author;
     }
 
     public String getDescription() {
@@ -44,13 +57,7 @@ public class EventReq {
         return time;
     }
 
-    public EventReq(String title, long creatorId, String description, String place, Geo location, String date, String time) {
-        this.title = title;
-        this.creatorId = creatorId;
-        this.description = description;
-        this.place = place;
-        this.location = location;
-        this.date = date;
-        this.time = time;
+    public boolean isJoined() {
+        return isJoined;
     }
 }
