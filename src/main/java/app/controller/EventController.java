@@ -92,6 +92,21 @@ public class EventController {
         return "Added";
     }
 
+    @PutMapping(Paths.getEventPath + "{id}")
+    public String updateEvent(@PathVariable("id") long id____, @RequestBody EventReq req){
+        Event event = eventService.getById(id____).orElseThrow(() -> new RuntimeException("Event not found on :: " + id____));
+
+        event.setTitle(req.getTitle());
+        event.setTime(req.getTime());
+        event.setDate(req.getDate());
+        event.setDescription(req.getDescription());
+        event.setLocation(req.getLocation());
+        event.setPlace(req.getPlace());
+
+        eventService.update(event);
+        return "Update done";
+    }
+
     @GetMapping(Paths.getNearBy)
     public Iterable<Event> nearBy(@RequestParam(name = "latitude") double lat, @RequestParam(name = "longitude") double lon){
         return eventService.getEventNearBy(lat, lon);

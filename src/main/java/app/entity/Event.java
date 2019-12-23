@@ -170,4 +170,37 @@ public class Event {
     public Integer getPersonCap() {
         return Optional.of(guests.size()).orElse(null);
     }
+
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setCreatorId(long creatorId) {
+        this.creatorId = creatorId;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setLocation(Geo location) {
+        this.location = location;
+    }
+
+    public void setPlace(String place) {
+        this.place = place;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 }
