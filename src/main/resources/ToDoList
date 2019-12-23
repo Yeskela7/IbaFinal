@@ -1,0 +1,12 @@
+//TODO LIST
+
+//TODO add Auth (JWT)
+
+//TODO add more methods for filter
+*EventService*
+*PersonService*
+
+//TODO split picture, create new entity and map with user
+*Person class*
+
+//TODO Auth
