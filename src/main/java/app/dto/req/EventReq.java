@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Data
 public class EventReq {
+    private long id;
     private String title;
     private Person author;
     private String description;
@@ -20,7 +21,8 @@ public class EventReq {
     private String time;
     private boolean isJoined;
 
-    public EventReq(String title, Person author, String description, String place, Geo location, String date, String time, boolean isJoined) {
+    public EventReq(long id, String title, Person author, String description, String place, Geo location, String date, String time, boolean isJoined) {
+        this.id = id;
         this.title = title;
         this.author = author;
         this.description = description;
@@ -29,6 +31,10 @@ public class EventReq {
         this.date = date;
         this.time = time;
         this.isJoined = isJoined;
+    }
+
+    public long getId() {
+        return id;
     }
 
     public String getTitle() {

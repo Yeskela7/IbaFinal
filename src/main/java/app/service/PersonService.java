@@ -35,4 +35,7 @@ public class PersonService {
         personRepository.save(person);
     }
 
+    public Iterable<Event> getMyEvents(long userId){
+        return personRepository.findById(userId).get().getEvents();
+    }
 }

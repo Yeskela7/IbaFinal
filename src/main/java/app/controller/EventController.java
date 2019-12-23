@@ -50,7 +50,8 @@ public class EventController {
         Person joiner = personService.getById(userId.get()).get();
         Event event = eventService.getById(id____).get();
         Person person = personService.getById(event.getCreatorId()).get();
-        return new EventReq(event.getTitle(),
+        return new EventReq(id____
+                ,event.getTitle(),
                 person,
                 event.getDescription(),
                 event.getPlace(),
