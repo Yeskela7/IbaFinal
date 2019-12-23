@@ -29,4 +29,12 @@ public class PersonResp {
     public String getSurname() {
         return surname;
     }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getRegTime() {
+        return regTime;
+    }
 }

@@ -39,7 +39,7 @@ public class AuthService {
         String regTime = DateConverter.millsToString(date.getTime());
         Optional<Person> found = repo.findByEmail(email);
         if (!found.isPresent()) {
-            repo.save(new Person(email,enc.encode(password),name,surname, city,regTime));
+            repo.save(new Person(email,enc.encode(password),name,surname, city, regTime));
         }
         return !found.isPresent();
     }

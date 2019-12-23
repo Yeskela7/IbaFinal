@@ -34,7 +34,8 @@ public class PersonController {
                 .flatMap(jwt::tokenToClaim)
                 .map(jwt::extractUserIdFromClaims);
         Optional<Person> person = personService.getById(userId.get());
-        return new PersonResp(person.get().getId(),person.get().getEmail(),
+        return new PersonResp(person.get().getId()
+                ,person.get().getEmail(),
                 person.get().getName()
                 ,person.get().getSurname()
                 ,person.get().getCity()
