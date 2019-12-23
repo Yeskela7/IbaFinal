@@ -4,8 +4,10 @@ import app.entity.Geo;
 import app.entity.Person;
 import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+@Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Data
 public class EventReq {

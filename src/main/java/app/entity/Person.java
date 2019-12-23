@@ -49,6 +49,9 @@ public class Person {
 //    @Column(name = "picURl")
 //    private String picURL;
 
+
+
+
     @JsonBackReference
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy="guests")
     private Collection<Event> events = new HashSet<>();

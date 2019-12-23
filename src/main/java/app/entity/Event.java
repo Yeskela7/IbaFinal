@@ -52,7 +52,7 @@ public class Event {
     @Column(name = "date")
     private String date;
 
-    @JsonManagedReference
+
     @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY, targetEntity = Person.class)
     @JoinTable(name = "c_person_event",
             joinColumns = {
@@ -94,7 +94,7 @@ public class Event {
         this.date = date;
     }
 
-    @JsonManagedReference
+
     @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY, targetEntity = Tag.class)
             @JoinTable(name = "c_tag_event",
             joinColumns = {
@@ -108,7 +108,7 @@ public class Event {
         category.addAll(t);
     }
 
-    @JsonManagedReference
+
     @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY, targetEntity = Comment.class)
     @JoinTable(name = "c_comment_event",
             joinColumns = {
